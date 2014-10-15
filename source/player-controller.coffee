@@ -1,6 +1,6 @@
 class PlayerController
-    hitBoxHeight: 64 * 2
-    hitBoxWidth: 64 * 1
+    hitBoxHeight: 90
+    hitBoxWidth: 40
 
     # These represent the upper left corner of the hit box
     xPosition: 0
@@ -30,8 +30,10 @@ class PlayerController
 
     addToStage: (stage) ->
         @sprite = PIXI.Sprite.fromImage 'assets/running_girl__1_.png'
-        @sprite.position.x = 200
-        @sprite.position.y = 200
+        @sprite.position.x = @xOffset
+        @sprite.position.y = @yOffset
+        @sprite.scale.x = 3
+        @sprite.scale.y = 3
         stage.addChild @sprite
 
         @hitBox = new PIXI.Graphics()
