@@ -29,6 +29,11 @@ class PlayerController
         @yOffset = position.y - @hitBoxHeight
 
     addToStage: (stage) ->
+        @sprite = PIXI.Sprite.fromImage 'assets/running_girl__1_.png'
+        @sprite.position.x = 200
+        @sprite.position.y = 200
+        stage.addChild @sprite
+
         @hitBox = new PIXI.Graphics()
         @hitBox.beginFill 0xFF0000
         @hitBox.drawRect @xOffset, @yOffset, @hitBoxWidth, @hitBoxHeight

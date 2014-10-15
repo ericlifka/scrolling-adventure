@@ -1,6 +1,6 @@
 window.GameController = class GameController
     assetPaths: [
-        'assets/running_girl.gif'
+        'assets/running_girl__1_.png'
     ]
 
     constructor: (@viewport) ->
