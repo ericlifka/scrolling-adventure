@@ -1,4 +1,8 @@
 window.GameController = class GameController
+    assetPaths: [
+        'assets/running_girl.gif'
+    ]
+
     constructor: (@viewport) ->
         @input = new InputController()
 
@@ -14,8 +18,12 @@ window.GameController = class GameController
             @nextAnimationFrame()
             requestAnimationFrame browserFrameHook
 
-        @lastTimestamp = Date.now()
-        requestAnimationFrame browserFrameHook
+        loader = new PIXI.AssetLoader @assetPaths
+        loader.onComplete = =>
+            @lastTimestamp = Date.now()
+            requestAnimationFrame browserFrameHook
+
+        loader.load()
 
     nextAnimationFrame: ->
         elapsed = @elapsedSinceLastFrame()
