@@ -21,6 +21,8 @@ class PlayerController
 
     facingRight: true
     jumping: false
+    jumpReleased: true
+    doubleJump: false
 
     hitBox: null
     sprite: null
@@ -63,13 +65,25 @@ class PlayerController
         else if not @jumping
             @slow timeRatio
 
-        if inputState.jump and not @jumping
+
+        if inputState.jump and not @jumping and @jumpReleased
             @jumping = true
-            @yVelocity += @jumpAcceleration
+            @jumpReleased = false
+            @yVelocity = @jumpAcceleration
+
+        else if inputState.jump and @jumping and @jumpReleased and not @doubleJump
+            @doubleJump = true
+            @jumpReleased = false
+            @yVelocity = @jumpAcceleration
+            
+        else if not inputState.jump
+            @jumpReleased = true
+
 
         if @jumping
             @accelerateDown timeRatio
             @checkFloorCollision timeRatio
+
 
         @updatePosition timeRatio
         @updateSprite()
@@ -128,5 +142,7 @@ class PlayerController
 
         if y < platformHeight and yStep >= platformHeight
             @jumping = false
+            @doubleJump = false
+
             @yVelocity = 0
             @yPosition = platformHeight
