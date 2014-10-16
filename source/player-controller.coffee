@@ -19,6 +19,7 @@ class PlayerController
     xAccelerationCap: 400
 
     hitBox: null
+    sprite: null
 
     constructor: ->
 
@@ -36,10 +37,10 @@ class PlayerController
         @sprite.scale.y = 3
         stage.addChild @sprite
 
-        @hitBox = new PIXI.Graphics()
-        @hitBox.beginFill 0xFF0000
-        @hitBox.drawRect @xOffset, @yOffset, @hitBoxWidth, @hitBoxHeight
-        window.box = @hitBox
+#        @hitBox = new PIXI.Graphics()
+#        @hitBox.beginFill 0xFF0000
+#        @hitBox.drawRect @xOffset, @yOffset, @hitBoxWidth, @hitBoxHeight
+#        window.box = @hitBox
 #        stage.addChild @hitBox
 
     update: (elapsedTime, inputState) ->
@@ -97,8 +98,8 @@ class PlayerController
         @yPosition -= @yVelocity * timeRatio
 
     updateSprite: ->
-        @hitBox.position.x = @xPosition - @xOffset
-        @hitBox.position.y = @yPosition - @yOffset
+        @sprite.position.x = @xPosition #- @xOffset
+        @sprite.position.y = @yPosition #- @yOffset
 
     checkFloorCollision: (timeRatio) ->
         y = @yPosition
