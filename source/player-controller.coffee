@@ -18,6 +18,8 @@ class PlayerController
     xAccelerationStep: 1000
     xAccelerationCap: 400
 
+    facingRight: true
+
     hitBox: null
     sprite: null
 
@@ -35,6 +37,8 @@ class PlayerController
         @sprite.position.y = @yOffset
         @sprite.scale.x = 3
         @sprite.scale.y = 3
+        @sprite.pivot.set 16, 0
+
         stage.addChild @sprite
 
 #        @hitBox = new PIXI.Graphics()
@@ -47,9 +51,13 @@ class PlayerController
         timeRatio = elapsedTime / 1000
 
         if inputState.right
+            @facingRight = true
             @accelerateRight timeRatio
+
         else if inputState.left
+            @facingRight = false
             @accelerateLeft timeRatio
+
         else
             @slow timeRatio
 
@@ -100,6 +108,10 @@ class PlayerController
     updateSprite: ->
         @sprite.position.x = @xPosition #- @xOffset
         @sprite.position.y = @yPosition #- @yOffset
+        if @facingRight
+            @sprite.scale.x = -3
+        else
+            @sprite.scale.x = 3
 
     checkFloorCollision: (timeRatio) ->
         y = @yPosition
