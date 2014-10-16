@@ -15,10 +15,12 @@ class PlayerController
 
     jumpAcceleration: 500
     yAccelerationStep: 1000
-    xAccelerationStep: 1000
+    xAccelerationStep: 2000
+    xJumpingAccelerationStep: 700
     xAccelerationCap: 400
 
     facingRight: true
+    jumping: false
 
     hitBox: null
     sprite: null
@@ -58,7 +60,7 @@ class PlayerController
             @facingRight = false
             @accelerateLeft timeRatio
 
-        else
+        else if not @jumping
             @slow timeRatio
 
         if inputState.jump and not @jumping
@@ -73,11 +75,17 @@ class PlayerController
         @updateSprite()
 
     accelerateRight: (timeRatio) ->
-        @xVelocity += @xAccelerationStep * timeRatio
+        if @jumping
+            @xVelocity += @xJumpingAccelerationStep * timeRatio
+        else
+            @xVelocity += @xAccelerationStep * timeRatio
         @capVelocity()
 
     accelerateLeft: (timeRatio) ->
-        @xVelocity -= @xAccelerationStep * timeRatio
+        if @jumping
+            @xVelocity -= @xJumpingAccelerationStep * timeRatio
+        else
+            @xVelocity -= @xAccelerationStep * timeRatio
         @capVelocity()
 
     accelerateDown: (timeRatio) ->
