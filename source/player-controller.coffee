@@ -29,7 +29,7 @@ class PlayerController
         @yOffset = position.y - @hitBoxHeight
 
     addToStage: (stage) ->
-        @sprite = PIXI.Sprite.fromImage 'assets/running_girl__1_.png'
+        @sprite = PIXI.Sprite.fromImage 'assets/wizard_girl_boots.png'
         @sprite.position.x = @xOffset
         @sprite.position.y = @yOffset
         @sprite.scale.x = 3
@@ -40,7 +40,7 @@ class PlayerController
         @hitBox.beginFill 0xFF0000
         @hitBox.drawRect @xOffset, @yOffset, @hitBoxWidth, @hitBoxHeight
         window.box = @hitBox
-        stage.addChild @hitBox
+#        stage.addChild @hitBox
 
     update: (elapsedTime, inputState) ->
         timeRatio = elapsedTime / 1000
