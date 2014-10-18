@@ -75,7 +75,7 @@ class PlayerController
             @doubleJump = true
             @jumpReleased = false
             @yVelocity = @jumpAcceleration
-            
+
         else if not inputState.jump
             @jumpReleased = true
 
