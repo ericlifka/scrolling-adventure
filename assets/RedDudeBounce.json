@@ -1,0 +1,132 @@
+{
+    "frames": {
+        "reddude.000": {
+            "frame": {
+                "h": 32, 
+                "w": 32, 
+                "x": 0, 
+                "y": 0
+            }, 
+            "rotated": false, 
+            "sourceSize": {
+                "h": 17, 
+                "w": 10
+            }, 
+            "spriteSourceSize": {
+                "h": 17, 
+                "w": 10, 
+                "x": 9, 
+                "y": 9
+            }, 
+            "trimmed": true
+        }, 
+        "reddude.001": {
+            "frame": {
+                "h": 32, 
+                "w": 32, 
+                "x": 32, 
+                "y": 0
+            }, 
+            "rotated": false, 
+            "sourceSize": {
+                "h": 17, 
+                "w": 10
+            }, 
+            "spriteSourceSize": {
+                "h": 17, 
+                "w": 10, 
+                "x": 9, 
+                "y": 9
+            }, 
+            "trimmed": true
+        }, 
+        "reddude.002": {
+            "frame": {
+                "h": 32, 
+                "w": 32, 
+                "x": 64, 
+                "y": 0
+            }, 
+            "rotated": false, 
+            "sourceSize": {
+                "h": 17, 
+                "w": 10
+            }, 
+            "spriteSourceSize": {
+                "h": 17, 
+                "w": 10, 
+                "x": 9, 
+                "y": 9
+            }, 
+            "trimmed": true
+        }, 
+        "reddude.003": {
+            "frame": {
+                "h": 32, 
+                "w": 32, 
+                "x": 96, 
+                "y": 0
+            }, 
+            "rotated": false, 
+            "sourceSize": {
+                "h": 17, 
+                "w": 10
+            }, 
+            "spriteSourceSize": {
+                "h": 17, 
+                "w": 10, 
+                "x": 9, 
+                "y": 9
+            }, 
+            "trimmed": true
+        }, 
+        "reddude.004": {
+            "frame": {
+                "h": 32, 
+                "w": 32, 
+                "x": 128, 
+                "y": 0
+            }, 
+            "rotated": false, 
+            "sourceSize": {
+                "h": 17, 
+                "w": 10
+            }, 
+            "spriteSourceSize": {
+                "h": 17, 
+                "w": 10, 
+                "x": 9, 
+                "y": 9
+            }, 
+            "trimmed": true
+        }, 
+        "reddude.005": {
+            "frame": {
+                "h": 32, 
+                "w": 32, 
+                "x": 160, 
+                "y": 0
+            }, 
+            "rotated": false, 
+            "sourceSize": {
+                "h": 17, 
+                "w": 10
+            }, 
+            "spriteSourceSize": {
+                "h": 17, 
+                "w": 10, 
+                "x": 9, 
+                "y": 9
+            }, 
+            "trimmed": true
+        }
+    }, 
+    "meta": {
+        "image": "RedDudeBounce.png", 
+        "scale": 1, 
+        "size": {
+            "h": 32, 
+            "w": 192
+        }
+    }
+}

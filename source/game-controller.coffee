@@ -1,6 +1,7 @@
 window.GameController = class GameController
     assetPaths: [
         'assets/wizard_girl_boots.png'
+        'assets/RedDudeBounce2x.json',
     ]
 
     constructor: (@viewport) ->
@@ -11,7 +12,6 @@ window.GameController = class GameController
 
         @player = new PlayerController()
         @level = new LevelController(@player)
-        @level.load "test-level"
 
     start: ->
         browserFrameHook = =>
@@ -20,6 +20,8 @@ window.GameController = class GameController
 
         loader = new PIXI.AssetLoader @assetPaths
         loader.onComplete = =>
+            @setupAssets()
+            @level.load "test-level"
             @lastTimestamp = Date.now()
             requestAnimationFrame browserFrameHook
 
@@ -37,3 +39,6 @@ window.GameController = class GameController
         elapsed = now - @lastTimestamp
         @lastTimestamp = now
         elapsed
+
+    setupAssets: ->
+        @player.setupSprites()
