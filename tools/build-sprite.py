@@ -75,7 +75,6 @@ class SpriteMaker(object):
             }
             frames[frame_name] = frame
         output['frames'] = frames
-            
 
 if __name__ == '__main__':
     options = {'sprite_width': 20,
@@ -85,5 +84,3 @@ if __name__ == '__main__':
     sprite_maker = SpriteMaker('reddude', '../assets/RedDudeBounce2x.png',
                                6, 6, 1, options=options)
     sprite_maker.gen('output.json')
-    
-# vim: set sts=4 sw=4 expandtab:

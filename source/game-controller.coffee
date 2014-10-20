@@ -11,7 +11,7 @@ window.GameController = class GameController
         @viewport.appendChild @renderer.view
 
         @player = new PlayerController()
-        @level = new LevelController(@player)
+        @level = new LevelController(@player, 1024, 576)
 
     start: ->
         browserFrameHook = =>
