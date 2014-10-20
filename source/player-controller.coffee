@@ -4,13 +4,9 @@ class PlayerController
     hitBoxHeight: 34
     hitBoxWidth: 20
 
-    # These represent the upper left corner of the hit box
+    # These represent the bottom-center if the play in world coords
     xPosition: 0
     yPosition: 0
-
-    # The offset of the box's origin point from the stage's origin point
-    xOffset: 0
-    yOffset: 0
 
     xVelocity: 0
     yVelocity: 0
@@ -31,14 +27,16 @@ class PlayerController
 
     hitBox: null
     sprite: null
+    level: null
 
     constructor: ->
 
     jumpToPosition: (position) ->
         @xPosition = position.x
-        @yPosition = position.y - @hitBoxHeight
-        @xOffset = position.x
-        @yOffset = position.y - @hitBoxHeight
+        @yPosition = position.y
+        # @yPosition = position.y - @hitBoxHeight
+        # @xOffset = position.x
+        # @yOffset = position.y - @hitBoxHeight
 
     setupSprites: ->
         frames = [
@@ -75,6 +73,9 @@ class PlayerController
         # window.box = @hitBox
         # stage.addChild @hitBox
 
+    setLevel: (level) ->
+        @level = level
+
     update: (elapsedTime, inputState) ->
         timeRatio = elapsedTime / 1000
 
@@ -89,7 +90,6 @@ class PlayerController
         else if not @jumping
             @slow timeRatio
 
-
         if inputState.jump and not @jumping and @jumpReleased
             @jumping = true
             @jumpReleased = false
@@ -103,11 +103,14 @@ class PlayerController
         else if not inputState.jump
             @jumpReleased = true
 
+        # Gravity is constant
+        #
+        # if @jumping
+        #     @accelerateDown timeRatio
+        #     @checkFloorCollision timeRatio
 
-        if @jumping
-            @accelerateDown timeRatio
-            @checkFloorCollision timeRatio
-
+        @accelerateDown timeRatio
+        @checkFloorCollision timeRatio
 
         @updatePosition timeRatio
         @updateSprite()
@@ -165,24 +168,30 @@ class PlayerController
 
     updatePosition: (timeRatio) ->
         @xPosition += @xVelocity * timeRatio
-        @yPosition -= @yVelocity * timeRatio
+        @yPosition += @yVelocity * timeRatio
 
     updateSprite: ->
-        @sprite.position.x = @xPosition #- @xOffset
-        @sprite.position.y = @yPosition #- @yOffset
+        # Might need to mess with offsets again
+        # @sprite.position.x = @xPosition #- @xOffset
+        # @sprite.position.y = @yPosition #- @yOffset
+
+        # Need to convert the coords to even integers to
+        # prevent anti-aliasing quirks
+        @sprite.position.x = Math.round @xPosition - (@hitBoxWidth / 2)
+        @sprite.position.y = Math.round @level.height - (@yPosition + 70) # why 70?
         if @facingRight
             @sprite.scale.x = @spriteScale
         else
             @sprite.scale.x = -@spriteScale
 
     checkFloorCollision: (timeRatio) ->
-        y = @yPosition
-        yStep = y - @yVelocity * timeRatio
-        platformHeight = 500 - @hitBoxHeight
+        xStep = @xPosition + @xVelocity * timeRatio
+        yStep = @yPosition + @yVelocity * timeRatio
 
-        if y < platformHeight and yStep >= platformHeight
+        collision = @level.testCollision @xPosition, xStep, @yPosition, yStep
+
+        if collision != null
             @jumping = false
             @doubleJump = false
-
             @yVelocity = 0
-            @yPosition = platformHeight
+            @yPosition = collision
