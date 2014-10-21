@@ -79,6 +79,12 @@ class PlayerController
     update: (elapsedTime, inputState) ->
         timeRatio = elapsedTime / 1000
 
+        @updateXVelocity inputState, timeRatio
+        @updateYVelocity inputState, timeRatio
+        @updatePosition timeRatio
+        @updateSprite()
+
+    updateXVelocity: (inputState, timeRatio) ->
         if inputState.right
             @facingRight = true
             @accelerateRight timeRatio
@@ -90,6 +96,7 @@ class PlayerController
         else if not @jumping
             @slow timeRatio
 
+    updateYVelocity: (inputState, timeRatio) ->
         if inputState.jump and not @jumping and @jumpReleased
             @jumping = true
             @jumpReleased = false
@@ -103,17 +110,8 @@ class PlayerController
         else if not inputState.jump
             @jumpReleased = true
 
-        # Gravity is constant
-        #
-        # if @jumping
-        #     @accelerateDown timeRatio
-        #     @checkFloorCollision timeRatio
-
         @accelerateDown timeRatio
         @checkFloorCollision timeRatio
-
-        @updatePosition timeRatio
-        @updateSprite()
 
     setRunning: ->
         if !@running
