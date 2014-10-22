@@ -11,6 +11,7 @@ window.GameController = class GameController
         @viewport.appendChild @renderer.view
 
         @player = new PlayerController()
+        @camera = new CameraController()
         @level = new LevelController(@player, 1024, 576)
 
     start: ->
