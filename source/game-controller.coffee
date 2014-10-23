@@ -5,14 +5,20 @@ window.GameController = class GameController
     ]
 
     constructor: (@viewport) ->
+        @renderer = new PIXI.WebGLRenderer(1024, 576)
+        @camera = new CameraController(1024, 576)
         @input = new InputController()
+        @player = new PlayerController()
+        @level = new LevelController()
+        @injectServices()
 
-        @renderer = new PIXI.WebGLRenderer 1024, 576
         @viewport.appendChild @renderer.view
 
-        @player = new PlayerController()
-        @camera = new CameraController()
-        @level = new LevelController(@player, 1024, 576)
+    injectServices: ->
+        @level.camera = @camera
+        @level.player = @player
+        @player.camera = @camera
+        @player.level = @level
 
     start: ->
         browserFrameHook = =>
@@ -23,6 +29,7 @@ window.GameController = class GameController
         loader.onComplete = =>
             @setupAssets()
             @level.load "test-level"
+            @player.load()
             @lastTimestamp = Date.now()
             requestAnimationFrame browserFrameHook
 
@@ -33,7 +40,7 @@ window.GameController = class GameController
         inputState = @input.getFrameState()
 
         @level.update elapsed, inputState
-        @renderer.render @level.getStage()
+        @renderer.render @camera.stage
 
     elapsedSinceLastFrame: ->
         now = Date.now()

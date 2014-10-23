@@ -1,16 +1,9 @@
 class PlayerController
-    # hitBoxHeight: 90
-    # hitBoxWidth: 40
-    hitBoxHeight: 34
-    hitBoxWidth: 20
+    hitBox: { height: 34, width: 20 }
+    position: { x: 0, y: 0 }
+    velocity: { x: 0, y: 0 }
 
-    # These represent the bottom-center if the play in world coords
-    xPosition: 0
-    yPosition: 0
-
-    xVelocity: 0
-    yVelocity: 0
-
+    # 'dis some voodoo righ' hea'
     jumpAcceleration: 500
     yAccelerationStep: 1000
     xAccelerationStep: 2000
@@ -29,17 +22,12 @@ class PlayerController
     sprite: null
     level: null
 
-    constructor: ->
-
     jumpToPosition: (position) ->
-        @xPosition = position.x
-        @yPosition = position.y
-        # @yPosition = position.y - @hitBoxHeight
-        # @xOffset = position.x
-        # @yOffset = position.y - @hitBoxHeight
+        @position.x = position.x
+        @position.y = position.y
 
     setupSprites: ->
-        frames = [
+        @sprite = new PIXI.MovieClip [
             PIXI.Sprite.fromFrame('reddude.000').texture
             PIXI.Sprite.fromFrame('reddude.001').texture
             PIXI.Sprite.fromFrame('reddude.002').texture
@@ -47,34 +35,14 @@ class PlayerController
             PIXI.Sprite.fromFrame('reddude.004').texture
             PIXI.Sprite.fromFrame('reddude.005').texture
         ]
-        @runningSprite = new PIXI.MovieClip frames
 
-    addToStage: (stage) ->
-        # @sprite = PIXI.Sprite.fromImage 'assets/wizard_girl_boots.png'
-        # @sprite.position.x = @xOffset
-        # @sprite.position.y = @yOffset
-        # @sprite.scale.x = @spriteScale
-        # @sprite.scale.y = @spriteScale
-        # @sprite.pivot.set 16, 0
-
-        @sprite = @runningSprite
-
+    load: ->
         @sprite.scale.x = -@spriteScale
         @sprite.scale.y = @spriteScale
         @sprite.position.x = @xOffset
         @sprite.position.y = @yOffset
         @sprite.pivot.set 40, 0
-
-        stage.addChild @sprite
-
-        # @hitBox = new PIXI.Graphics()
-        # @hitBox.beginFill 0xFF0000
-        # @hitBox.drawRect @xOffset, @yOffset, @hitBoxWidth, @hitBoxHeight
-        # window.box = @hitBox
-        # stage.addChild @hitBox
-
-    setLevel: (level) ->
-        @level = level
+        @camera.stage.addChild @sprite
 
     update: (elapsedTime, inputState) ->
         timeRatio = elapsedTime / 1000
@@ -113,8 +81,44 @@ class PlayerController
         @accelerateDown timeRatio
         @checkFloorCollision timeRatio
 
+    accelerateRight: (timeRatio) ->
+        if @jumping
+            @velocity.x += @xJumpingAccelerationStep * timeRatio
+        else
+            @velocity.x += @xAccelerationStep * timeRatio
+
+        @capVelocity()
+        @setRunning()
+
+    accelerateLeft: (timeRatio) ->
+        if @jumping
+            @velocity.x -= @xJumpingAccelerationStep * timeRatio
+        else
+            @velocity.x -= @xAccelerationStep * timeRatio
+
+        @capVelocity()
+        @setRunning()
+
+    accelerateDown: (timeRatio) ->
+        @velocity.y -= @yAccelerationStep * timeRatio
+
+    slow: (timeRatio) ->
+        x = @velocity.x
+        if x < 0
+            x += @xAccelerationStep * timeRatio
+            if x > 0 then x = 0
+
+        else if x > 0
+            x -= @xAccelerationStep * timeRatio
+            if x < 0 then x = 0
+
+        @velocity.x = x
+
+        if x == 0
+            @setStopped()
+
     setRunning: ->
-        if !@running
+        if not @running
             @sprite.gotoAndPlay 0
             @sprite.animationSpeed = 1
             @running = true
@@ -124,49 +128,16 @@ class PlayerController
             @sprite.gotoAndStop 2
             @running = false
 
-    accelerateRight: (timeRatio) ->
-        if @jumping
-            @xVelocity += @xJumpingAccelerationStep * timeRatio
-        else
-            @xVelocity += @xAccelerationStep * timeRatio
-        @capVelocity()
-        @setRunning()
-
-    accelerateLeft: (timeRatio) ->
-        if @jumping
-            @xVelocity -= @xJumpingAccelerationStep * timeRatio
-        else
-            @xVelocity -= @xAccelerationStep * timeRatio
-        @capVelocity()
-        @setRunning()
-
-    accelerateDown: (timeRatio) ->
-        @yVelocity -= @yAccelerationStep * timeRatio
-
-    slow: (timeRatio) ->
-        if @xVelocity < 0
-            @xVelocity += @xAccelerationStep * timeRatio
-            if @xVelocity > 0
-                @xVelocity = 0
-
-        else if @xVelocity > 0
-            @xVelocity -= @xAccelerationStep * timeRatio
-            if @xVelocity < 0
-                @xVelocity = 0
-
-        if @xVelocity == 0
-            @setStopped()
-
     capVelocity: ->
-        if @xVelocity < -@xAccelerationCap
-            @xVelocity = -@xAccelerationCap
+        if @velocity.x < -@xAccelerationCap
+            @velocity.x = -@xAccelerationCap
 
-        if @xVelocity > @xAccelerationCap
-            @xVelocity = @xAccelerationCap
+        if @velocity.x > @xAccelerationCap
+            @velocity.x = @xAccelerationCap
 
     updatePosition: (timeRatio) ->
-        @xPosition += @xVelocity * timeRatio
-        @yPosition += @yVelocity * timeRatio
+        @position.x += @velocity.x * timeRatio
+        @position.y += @velocity.y * timeRatio
 
     updateSprite: ->
         # Might need to mess with offsets again
@@ -175,7 +146,7 @@ class PlayerController
 
         # Need to convert the coords to even integers to
         # prevent anti-aliasing quirks
-        @sprite.position.x = Math.round @xPosition - (@hitBoxWidth / 2)
+        @sprite.position.x = Math.round @position.x
         @sprite.position.y = Math.round @level.height - (@yPosition + 70) # why 70?
         if @facingRight
             @sprite.scale.x = @spriteScale
@@ -183,12 +154,12 @@ class PlayerController
             @sprite.scale.x = -@spriteScale
 
     checkFloorCollision: (timeRatio) ->
-        xStep = @xPosition + @xVelocity * timeRatio
-        yStep = @yPosition + @yVelocity * timeRatio
+        xStep = @position.x + @velocity.x * timeRatio
+        yStep = @position.y + @velocity.y * timeRatio
 
-        collision = @level.testCollision @xPosition, xStep, @yPosition, yStep
+        collision = @level.testCollision @position.x, xStep, @position.y, yStep
 
-        if collision != null
+        if collision
             @jumping = false
             @doubleJump = false
             @yVelocity = 0

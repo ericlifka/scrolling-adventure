@@ -1,31 +1,13 @@
 level_descriptions = level_descriptions or { }
 
 class LevelController
-    player: null
-    stage: null
-
-    # NOTE: stage.width may return NaN
-    #       we need to store the dimensions
-    #       of the level ourselves
-    constructor: (@player, @width, @height) ->
-        @stage = new PIXI.Stage 0xf5f5f5
-
     load: (levelIdentifier) ->
         @description = level_descriptions[levelIdentifier]
-        @setInitialPlayerPosition()
-
-        @addPlatformsToStage()
-        @player.addToStage @stage
-        @player.setLevel this
+        @player.jumpToPosition @description.startingPosition
+        @loadPlatforms()
 
     update: (elapsedTime, inputState) ->
         @player.update elapsedTime, inputState
-
-    getStage: ->
-        @stage
-
-    setInitialPlayerPosition: ->
-        @player.jumpToPosition @description.startingPosition
 
     translateCoordinates: (x, y) ->
         [x, @height - y]
@@ -41,10 +23,10 @@ class LevelController
             return 0
         null
 
-    addPlatformsToStage: ->
+    loadPlatforms: ->
         for {start, end, height} in @description.platforms
             [x, y] = @translateCoordinates start, height
             platform = new PIXI.Graphics()
             platform.beginFill 0x000000
             platform.drawRect x, y, end - start, 5
-            @stage.addChild platform
+            @camera.stage.addChild platform
