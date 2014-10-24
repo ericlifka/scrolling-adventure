@@ -10,7 +10,7 @@ class LevelController
         @player.update elapsedTime, inputState
 
     translateCoordinates: (x, y) ->
-        [x, @height - y]
+        [x, 576 - y]
 
     testCollision: (x, xStep, y, yStep) ->
         # Return the floor height if there was a collision
