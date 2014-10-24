@@ -78,8 +78,8 @@ class PlayerController
         else if not inputState.jump
             @jumpReleased = true
 
-#        @accelerateDown timeRatio
-#        @checkFloorCollision timeRatio
+        @accelerateDown timeRatio
+        @checkFloorCollision timeRatio
 
     accelerateRight: (timeRatio) ->
         if @jumping

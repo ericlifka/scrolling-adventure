@@ -11,4 +11,4 @@ level_descriptions['test-level'] =
     ]
     startingPosition:
         x: 20
-        y: 0
+        y: 400
