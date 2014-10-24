@@ -39,8 +39,8 @@ class PlayerController
     load: ->
         @sprite.scale.x = -@spriteScale
         @sprite.scale.y = @spriteScale
-        @sprite.position.x = @xOffset
-        @sprite.position.y = @yOffset
+        @sprite.position.x = @position.x
+        @sprite.position.y = @position.y
         @sprite.pivot.set 40, 0
         @camera.stage.addChild @sprite
 
@@ -68,12 +68,12 @@ class PlayerController
         if inputState.jump and not @jumping and @jumpReleased
             @jumping = true
             @jumpReleased = false
-            @yVelocity = @jumpAcceleration
+            @velocity.y = @jumpAcceleration
 
         else if inputState.jump and @jumping and @jumpReleased and not @doubleJump
             @doubleJump = true
             @jumpReleased = false
-            @yVelocity = @jumpAcceleration
+            @velocity.y = @jumpAcceleration
 
         else if not inputState.jump
             @jumpReleased = true
@@ -147,7 +147,7 @@ class PlayerController
         # Need to convert the coords to even integers to
         # prevent anti-aliasing quirks
         @sprite.position.x = Math.round @position.x
-        @sprite.position.y = Math.round @level.height - (@yPosition + 70) # why 70?
+        @sprite.position.y = Math.round @camera.height - (@position.y + 70) # why 70?
         if @facingRight
             @sprite.scale.x = @spriteScale
         else
@@ -162,5 +162,5 @@ class PlayerController
         if collision
             @jumping = false
             @doubleJump = false
-            @yVelocity = 0
-            @yPosition = collision
+            @velocity.y = 0
+            @position.y = collision
