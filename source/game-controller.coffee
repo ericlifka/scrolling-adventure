@@ -39,6 +39,7 @@ window.GameController = class GameController
         inputState = @input.getFrameState()
 
         @level.update elapsed, inputState
+        @camera.update()
         @renderer.render @camera.stage
 
     elapsedSinceLastFrame: ->

@@ -8,6 +8,9 @@ class CameraController
         @initializePlayer()
         @initializePlatforms()
 
+    update: ->
+        @updatePlayerSprite()
+
     initializePlayer: ->
         @player.initialize()
         @stage.addChild @player.sprite
@@ -19,3 +22,9 @@ class CameraController
 
     translateCoordinates: (x, y) ->
         [x, @height - y]
+
+    updatePlayerSprite: ->
+        # Need to convert the coords to even integers to
+        # prevent anti-aliasing quirks
+        @player.sprite.position.x = Math.round @player.position.x
+        @player.sprite.position.y = Math.round @height - (@player.position.y + 70) # why 70?

@@ -49,7 +49,7 @@ class PlayerController
         @updateXVelocity inputState, timeRatio
         @updateYVelocity inputState, timeRatio
         @updatePosition timeRatio
-        @updateSprite()
+        @updateDirection()
 
     updateXVelocity: (inputState, timeRatio) ->
         if inputState.right
@@ -138,15 +138,7 @@ class PlayerController
         @position.x += @velocity.x * timeRatio
         @position.y += @velocity.y * timeRatio
 
-    updateSprite: ->
-        # Might need to mess with offsets again
-        # @sprite.position.x = @xPosition #- @xOffset
-        # @sprite.position.y = @yPosition #- @yOffset
-
-        # Need to convert the coords to even integers to
-        # prevent anti-aliasing quirks
-        @sprite.position.x = Math.round @position.x
-        @sprite.position.y = Math.round @camera.height - (@position.y + 70) # why 70?
+    updateDirection: ->
         if @facingRight
             @sprite.scale.x = @spriteScale
         else
