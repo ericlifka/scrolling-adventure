@@ -29,7 +29,6 @@ window.GameController = class GameController
         loader.onComplete = =>
             @setupAssets()
             @level.load "test-level"
-            @player.load()
             @lastTimestamp = Date.now()
             requestAnimationFrame browserFrameHook
 

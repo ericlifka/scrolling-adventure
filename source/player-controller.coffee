@@ -36,13 +36,12 @@ class PlayerController
             PIXI.Sprite.fromFrame('reddude.005').texture
         ]
 
-    load: ->
+    initialize: ->
         @sprite.scale.x = -@spriteScale
         @sprite.scale.y = @spriteScale
         @sprite.position.x = @position.x
         @sprite.position.y = @position.y
         @sprite.pivot.set 40, 0
-        @camera.stage.addChild @sprite
 
     update: (elapsedTime, inputState) ->
         timeRatio = elapsedTime / 1000
