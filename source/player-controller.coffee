@@ -157,7 +157,10 @@ class PlayerController
         xStep = @position.x + @velocity.x * timeRatio
         yStep = @position.y + @velocity.y * timeRatio
 
-        collision = @level.testCollision @position.x, xStep, @position.y, yStep
+        [collision, died] = @level.testCollision @position.x, xStep, @position.y, yStep
+
+        if died
+            @level.reset()
 
         if collision
             @jumping = false

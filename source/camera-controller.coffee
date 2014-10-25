@@ -20,6 +20,11 @@ class CameraController
         @updatePlayerSprite()
         @updatePlatforms()
 
+    reset: ->
+        @position.x = 0
+        @position.y = 0
+        @update()
+
     initializePlayer: ->
         @player.initialize()
         @stage.addChild @player.sprite
