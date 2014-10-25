@@ -20,8 +20,9 @@ class PlayerController
     xJumpingAccelerationStep: 700   # rate of acceleration when in the air
     xAccelerationCap: 400           # maximum velocity in the horizontal direction
 
-    spriteScale: 1
     sprite: null
+    spriteScale: 1
+    characterHeight: 70 # represents the magical bullshit offset we have to move the character sprite by to get it to show up in the right place
 
     level: null
 

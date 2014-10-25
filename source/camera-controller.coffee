@@ -23,10 +23,11 @@ class CameraController
             @stage.addChild platform.sprite
 
     translateCoordinates: (x, y) ->
-        [x, @height - y]
+        ### Map world coordinates into screen coordinates based on camera position and screen height ###
+        [x - @position.x, @height - (y - @position.y)]
 
     updatePlayerSprite: ->
-        # Need to convert the coords to even integers to
-        # prevent anti-aliasing quirks
-        @player.sprite.position.x = Math.round @player.position.x
-        @player.sprite.position.y = Math.round @height - (@player.position.y + 70) # why 70?
+        # rounding prevents anti-aliasing issues
+        [x, y] = @translateCoordinates @player.position.x, @player.position.y + @player.characterHeight
+        @player.sprite.position.x = Math.round x
+        @player.sprite.position.y = Math.round y
