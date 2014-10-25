@@ -12,6 +12,7 @@ class CameraController
 
     update: ->
         @updatePlayerSprite()
+        @updatePlatforms()
 
     initializePlayer: ->
         @player.initialize()
@@ -19,7 +20,6 @@ class CameraController
 
     initializePlatforms: ->
         for platform in @level.platforms
-            [platform.sprite.position.x, platform.sprite.position.y] = @translateCoordinates platform.start, platform.height
             @stage.addChild platform.sprite
 
     translateCoordinates: (x, y) ->
@@ -31,3 +31,7 @@ class CameraController
         [x, y] = @translateCoordinates @player.position.x, @player.position.y + @player.characterHeight
         @player.sprite.position.x = Math.round x
         @player.sprite.position.y = Math.round y
+
+    updatePlatforms: ->
+        for platform in @level.platforms
+            [platform.sprite.position.x, platform.sprite.position.y] = @translateCoordinates platform.start, platform.height
