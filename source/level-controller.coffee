@@ -36,7 +36,7 @@ class LevelController
         #        be affected by the level
         for {start, end, height} in @description.platforms
             # This is all very cheat-y but it seems to work
-            if xStep < end and xStep > start and y >= height and yStep < height
+            if xStep < end and xStep >= start and y >= height and yStep < height
                 return [height, false]
 
         if y >= 0.0 and yStep < 0.0

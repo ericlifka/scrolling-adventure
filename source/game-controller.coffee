@@ -30,7 +30,8 @@ window.GameController = class GameController
         loader = new PIXI.AssetLoader @assetPaths
         loader.onComplete = =>
             @setupAssets()
-            @level.load "test-level"
+            # @level.load "test-level"
+            @level.load "level1-level"
             @lastTimestamp = Date.now()
             requestAnimationFrame browserFrameHook
 

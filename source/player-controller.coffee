@@ -35,6 +35,10 @@ class PlayerController
         @position.x = position.x
         @position.y = position.y
 
+    reset: ->
+        # other things eventually
+        @velocity = { x: 0, y: 0 }
+
     setupSprites: ->
         @sprite = new PIXI.MovieClip [
             PIXI.Sprite.fromFrame('reddude.000').texture
