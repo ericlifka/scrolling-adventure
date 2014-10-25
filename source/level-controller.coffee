@@ -1,6 +1,9 @@
 level_descriptions = level_descriptions or { }
 
 class LevelController
+    camera: null
+    player: null
+
     constructor: ->
         @platforms = []
 
@@ -8,12 +11,10 @@ class LevelController
         @description = level_descriptions[levelIdentifier]
         @player.jumpToPosition @description.startingPosition
         @loadPlatforms()
+        @camera.initializeAssets()
 
     update: (elapsedTime, inputState) ->
         @player.update elapsedTime, inputState
-
-    translateCoordinates: (x, y) ->
-        [x, 576 - y]
 
     testCollision: (x, xStep, y, yStep) ->
         # Return the floor height if there was a collision
@@ -22,20 +23,19 @@ class LevelController
             # This is all very cheat-y but it seems to work
             if xStep < end and xStep > start and y >= height and yStep < height
                 return height
+
         if y >= 0.0 and yStep < 0.0
             return 0
+
         null
 
     loadPlatforms: ->
-        for { start, end, height } in @description.platforms
-            length = end - start
-            sprite = new PIXI.Sprite.fromImage 'assets/platform.png'
-            [sprite.position.x, sprite.position.y] = @translateCoordinates start, height
-            @camera.stage.addChild sprite
-
+        for platform in @description.platforms
             @platforms.push {
-                height
-                start
-                length
-                sprite
+                height: platform.height
+                start: platform.start
+                length: platform.end - platform.start
+                sprite: new PIXI.Sprite.fromImage 'assets/platform.png'
             }
+
+        null

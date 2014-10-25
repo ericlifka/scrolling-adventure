@@ -16,10 +16,9 @@ window.GameController = class GameController
         @viewport.appendChild @renderer.view
 
     injectServices: ->
-        @level.camera = @camera
-        @level.player = @player
-        @player.camera = @camera
-        @player.level = @level
+        @player.camera = @level.camera = @camera
+        @camera.player = @level.player = @player
+        @camera.level = @player.level = @level
 
     start: ->
         browserFrameHook = =>
