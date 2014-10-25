@@ -11,7 +11,7 @@ class LevelController
         @description = level_descriptions[levelIdentifier]
         @loadPlatforms()
         @player.jumpToPosition @description.startingPosition
-        @camera.initialize()
+        @camera.initialize @description.dimensions
 
     update: (elapsedTime, inputState) ->
         @player.update elapsedTime, inputState
