@@ -38,7 +38,7 @@ class LevelController
     loadPlatforms: ->
         for platform in @description.platforms
             length = platform.end - platform.start
-            sprite = new PIXI.Sprite.fromImage 'assets/platform_tile.png'
+            sprite = new PIXI.Sprite.fromImage 'assets/Platform-Metal.png'
             sprite.width = length
             @platforms.push {
                 height: platform.height

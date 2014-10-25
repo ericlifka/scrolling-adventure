@@ -4,6 +4,7 @@ window.GameController = class GameController
         'assets/RedDudeBounce2x.json'
         'assets/platform_tile.png'
         'assets/Background.png'
+        'assets/Platform-Metal.png'
     ]
 
     constructor: (@viewport) ->
