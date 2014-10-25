@@ -2,7 +2,7 @@ window.GameController = class GameController
     assetPaths: [
         'assets/wizard_girl_boots.png'
         'assets/RedDudeBounce2x.json'
-        'assets/platform.png'
+        'assets/platform_tile.png'
     ]
 
     constructor: (@viewport) ->
