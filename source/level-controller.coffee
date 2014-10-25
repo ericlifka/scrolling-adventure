@@ -1,6 +1,9 @@
 level_descriptions = level_descriptions or { }
 
 class LevelController
+    constructor: ->
+        @platforms = []
+
     load: (levelIdentifier) ->
         @description = level_descriptions[levelIdentifier]
         @player.jumpToPosition @description.startingPosition
@@ -24,9 +27,15 @@ class LevelController
         null
 
     loadPlatforms: ->
-        for {start, end, height} in @description.platforms
-            [x, y] = @translateCoordinates start, height
-            platform = new PIXI.Graphics()
-            platform.beginFill 0x000000
-            platform.drawRect x, y, end - start, 5
-            @camera.stage.addChild platform
+        for { start, end, height } in @description.platforms
+            length = end - start
+            sprite = new PIXI.Sprite.fromImage 'assets/platform.png'
+            [sprite.position.x, sprite.position.y] = @translateCoordinates start, height
+            @camera.stage.addChild sprite
+
+            @platforms.push {
+                height
+                start
+                length
+                sprite
+            }
