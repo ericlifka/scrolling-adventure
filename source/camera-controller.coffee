@@ -1,8 +1,10 @@
 class CameraController
     level: null
+    position: null # in world coordinates
 
     constructor: (@width, @height) ->
         @stage = new PIXI.Stage 0xf5f5f5
+        @position = { x: 0, y: 0 }
 
     initialize: ->
         @initializePlayer()

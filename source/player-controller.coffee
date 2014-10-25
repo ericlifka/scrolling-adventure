@@ -1,26 +1,34 @@
 class PlayerController
-    hitBox: { height: 34, width: 20 }
-    position: { x: 0, y: 0 }
-    velocity: { x: 0, y: 0 }
+    # rectangle to calculate collisions against
+    hitBox: null
 
-    # 'dis some voodoo righ' hea'
-    jumpAcceleration: 500
-    yAccelerationStep: 1000
-    xAccelerationStep: 2000
-    xJumpingAccelerationStep: 700
-    xAccelerationCap: 400
+    # physical vectors
+    position: null
+    velocity: null
 
+    # character state machine properties
     facingRight: true
+    running: false
     jumping: false
     jumpReleased: true
     doubleJump: false
-    running: false
+
+    # constants to adjust physics calculations
+    jumpAcceleration: 500           # upward velocity when jumping
+    yAccelerationStep: 1000         # gravitational acceleration down
+    xAccelerationStep: 2000         # rate of acceleration when on the ground
+    xJumpingAccelerationStep: 700   # rate of acceleration when in the air
+    xAccelerationCap: 400           # maximum velocity in the horizontal direction
 
     spriteScale: 1
-
-    hitBox: null
     sprite: null
+
     level: null
+
+    constructor: ->
+        @hitBox = { height: 34, width: 20 }
+        @position = { x: 0, y: 0 }
+        @velocity = { x: 0, y: 0 }
 
     jumpToPosition: (position) ->
         @position.x = position.x
