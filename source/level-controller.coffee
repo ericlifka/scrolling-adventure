@@ -10,8 +10,14 @@ class LevelController
     load: (levelIdentifier) ->
         @description = level_descriptions[levelIdentifier]
         @loadPlatforms()
+        @loadBackground()
         @player.jumpToPosition @description.startingPosition
         @camera.initialize @description.dimensions
+
+    loadBackground: ->
+        @background = PIXI.Sprite.fromImage 'assets/Background.png'
+        @background.position.x = 0
+        @background.position.y = 0
 
     update: (elapsedTime, inputState) ->
         @player.update elapsedTime, inputState

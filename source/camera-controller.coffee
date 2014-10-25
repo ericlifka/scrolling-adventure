@@ -12,8 +12,8 @@ class CameraController
             right: Math.round @width * .75
 
     initialize: (@levelDimensions) ->
-        @initializePlayer()
         @initializePlatforms()
+        @initializePlayer()
 
     update: ->
         @checkPlayerPosition()
@@ -25,6 +25,7 @@ class CameraController
         @stage.addChild @player.sprite
 
     initializePlatforms: ->
+        @stage.addChild @level.background
         for platform in @level.platforms
             @stage.addChild platform.sprite
 
