@@ -36,7 +36,7 @@ class CameraController
         if @player.position.x - @position.x < @thresholds.left && @position.x > 0
             @position.x = @player.position.x - @thresholds.left
 
-        if @player.position.x - @position.x > @thresholds.right && @position.x - @width < @levelDimensions.width
+        if @player.position.x - @position.x > @thresholds.right && @position.x + @width < @levelDimensions.width
             @position.x = @player.position.x - @thresholds.right
 
     updatePlayerSprite: ->
