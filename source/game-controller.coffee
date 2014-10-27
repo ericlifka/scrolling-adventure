@@ -58,6 +58,6 @@ window.GameController = class GameController
         @player.setupSprites()
 
     loadLevelDescriptions: (callback) ->
-        @loader.loadAll =>
-            @level.load "level1-level"
+        @loader.importAll =>
+            @level.load "level1"
             callback()

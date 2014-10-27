@@ -9,7 +9,13 @@ class LevelLoader
         @descriptions = { }
         @fs = require 'fs'
 
-    loadAll: (callback) ->
+    getLevelDescription: (level) ->
+        if @descriptions.hasOwnProperty level
+            @descriptions[level]
+        else
+            throw "Cannot find description for level: #{level}"
+
+    importAll: (callback) ->
         @fs.readdir './levels', (error, files) =>
             checkError error, callback
             @loadFromFileList files, callback
@@ -20,12 +26,10 @@ class LevelLoader
         for file in files
             @fs.readFile "./levels/#{file}", (error, data) =>
                 checkError error, callback
-
                 @readJson data
 
                 loaded += 1
                 if loaded >= total
-                    console.log @descriptions
                     callback()
 
     readJson: (data) ->

@@ -9,7 +9,7 @@ class LevelController
         @platforms = []
 
     load: (levelIdentifier) ->
-        @description = level_descriptions[levelIdentifier]
+        @description = @loader.getLevelDescription levelIdentifier
         @loadPlatforms()
         @loadBackground()
         # Loads assets for the level
