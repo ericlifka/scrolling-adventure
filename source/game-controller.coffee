@@ -37,6 +37,7 @@ window.GameController = class GameController
             @nextAnimationFrame()
             requestAnimationFrame browserFrameHook
 
+        @lastTimestamp = Date.now()
         requestAnimationFrame browserFrameHook
 
     nextAnimationFrame: ->
@@ -59,5 +60,4 @@ window.GameController = class GameController
     loadLevelDescriptions: (callback) ->
         @loader.loadAll =>
             @level.load "level1-level"
-            @lastTimestamp = Date.now()
             callback()
