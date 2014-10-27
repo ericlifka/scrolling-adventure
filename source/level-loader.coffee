@@ -13,7 +13,7 @@ class LevelLoader
         if @descriptions.hasOwnProperty level
             @descriptions[level]
         else
-            throw "Cannot find description for level: #{level}"
+            console.error "Cannot find description for level: #{level}"
 
     importAll: (callback) ->
         @fs.readdir './levels', (error, files) =>
