@@ -1,0 +1,23 @@
+{
+    "name": "level1",
+    "dimensions": {
+        "width": 12800,
+        "height": 576
+    },
+    "startingPosition": {
+        "x": 64,
+        "y": 512
+    },
+    "platforms": [
+        {
+            "start": 0,
+            "end": 64,
+            "height": 128
+        },
+        {
+            "start": 64,
+            "end": 128,
+            "height": 128
+        }
+    ]
+}
