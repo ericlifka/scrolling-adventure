@@ -3,6 +3,7 @@ level_descriptions = level_descriptions or { }
 class LevelController
     camera: null
     player: null
+    loader: null
 
     constructor: ->
         @platforms = []

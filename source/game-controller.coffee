@@ -8,6 +8,7 @@ window.GameController = class GameController
     ]
 
     constructor: (@viewport) ->
+        @loader = new LevelLoader()
         @renderer = new PIXI.WebGLRenderer(1024, 576)
         @camera = new CameraController(1024, 576)
         @input = new InputController()
@@ -21,21 +22,22 @@ window.GameController = class GameController
         @player.camera = @level.camera = @camera
         @camera.player = @level.player = @player
         @camera.level = @player.level = @level
+        @level.loader = @loader
+
+    initialize: (callback) ->
+        loader = new PIXI.AssetLoader @assetPaths
+        loader.onComplete = =>
+            @setupAssets()
+            @loadLevelDescriptions callback
+
+        loader.load()
 
     start: ->
         browserFrameHook = =>
             @nextAnimationFrame()
             requestAnimationFrame browserFrameHook
 
-        loader = new PIXI.AssetLoader @assetPaths
-        loader.onComplete = =>
-            @setupAssets()
-            # @level.load "test-level"
-            @level.load "level1-level"
-            @lastTimestamp = Date.now()
-            requestAnimationFrame browserFrameHook
-
-        loader.load()
+        requestAnimationFrame browserFrameHook
 
     nextAnimationFrame: ->
         elapsed = @elapsedSinceLastFrame()
@@ -53,3 +55,9 @@ window.GameController = class GameController
 
     setupAssets: ->
         @player.setupSprites()
+
+    loadLevelDescriptions: (callback) ->
+        @loader.loadAll =>
+            @level.load "level1-level"
+            @lastTimestamp = Date.now()
+            callback()
