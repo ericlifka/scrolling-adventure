@@ -13,10 +13,8 @@ import json
 
 from PIL import Image
 
-HEADER = """level_descriptions = level_descriptions or { }
-
-# Level platforms expressed in world coordinates
-level_descriptions['%s'] ="""
+HEADER = """{
+    "name": "%s","""
 
 PLAYER = (255, 255, 255, 255)
 
@@ -70,36 +68,39 @@ class LevelGenerator(object):
         width = self.image_width * w
         height = self.image_height * h
         lines = [
-            '    dimensions:',
-            '        width: {}'.format(width),
-            '        height: {}'.format(height)
+            '    "dimensions": {',
+            '        "width": {},'.format(width),
+            '        "height": {}'.format(height),
+            '    },'
         ]
         output = '\n'.join(lines)
         print output
 
     def write_platforms(self):
-        print '    platforms: ['
+        print '    "platforms": ['
         for platform in self.platforms:
             x, y = platform.coords
             w, h = platform.dimensions
             lines = [
                 '        {',
-                '            start: {}'.format(x),
-                '            end: {}'.format(x + w),
-                '            height: {}'.format(y),
+                '            "start": {},'.format(x),
+                '            "end": {},'.format(x + w),
+                '            "height": {}'.format(y),
                 '        },'
             ]
             output = '\n'.join(lines)
             print output
-        print '    ]'
+        print '    ],'
 
     def write_player_start(self):
         if not self.player_start:
             raise Exception('No player start defined on map')
         x, y = self.player_start
-        print '    startingPosition:'
-        print '        x: {}'.format(x)
-        print '        y: {}'.format(y)
+        print '    "startingPosition": {'
+        print '        "x": {},'.format(x)
+        print '        "y": {}'.format(y)
+        print '    }'
+        print '}'
 
     def write_level(self):
         print HEADER % self.name
