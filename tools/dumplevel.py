@@ -10,6 +10,7 @@ Background = green
 
 import os
 import json
+import argparse
 
 from PIL import Image
 
@@ -63,55 +64,54 @@ class LevelGenerator(object):
                 elif pixel == PLAYER:
                     self.player_start = self.world_coords(coords)
 
-    def write_dimensions(self):
+    def write_dimensions(self, level):
         w, h = self.tile_dimensions
         width = self.image_width * w
         height = self.image_height * h
-        lines = [
-            '    "dimensions": {',
-            '        "width": {},'.format(width),
-            '        "height": {}'.format(height),
-            '    },'
-        ]
-        output = '\n'.join(lines)
-        print output
+        level['dimensions'] = {
+            'width': width,
+            'height': height
+        }
 
-    def write_platforms(self):
-        print '    "platforms": ['
+    def write_platforms(self, level):
+        level['platforms'] = []
         for platform in self.platforms:
             x, y = platform.coords
             w, h = platform.dimensions
-            lines = [
-                '        {',
-                '            "start": {},'.format(x),
-                '            "end": {},'.format(x + w),
-                '            "height": {}'.format(y),
-                '        },'
-            ]
-            output = '\n'.join(lines)
-            print output
-        print '    ],'
 
-    def write_player_start(self):
+            level['platforms'].append({
+                'start': x,
+                'end': x + w,
+                'height': y
+            })
+
+    def write_player_start(self, level):
         if not self.player_start:
             raise Exception('No player start defined on map')
         x, y = self.player_start
-        print '    "startingPosition": {'
-        print '        "x": {},'.format(x)
-        print '        "y": {}'.format(y)
-        print '    }'
-        print '}'
+        level['startingPosition'] = {
+            'x': x,
+            'y': y
+        }
 
     def write_level(self):
-        print HEADER % self.name
-        self.write_dimensions()
-        self.write_platforms()
-        self.write_player_start()
+        level= {}
+        level['name'] = self.name
+        self.write_dimensions(level)
+        self.write_platforms(level)
+        self.write_player_start(level)
+        print(json.dumps(level))
 
     def gen(self):
         self.read_level_image()
         self.write_level()
 
+
 if __name__ == '__main__':
-    level = LevelGenerator('level-01', '../assets/level-01.png')
+    parser = argparse.ArgumentParser(description='Create level from image')
+    parser.add_argument('--level-name', dest='level_name',
+                        help='ID/Name of the level')
+    parser.add_argument('image', help='Path to the image')
+    args = parser.parse_args()
+    level = LevelGenerator(args.level_name, args.image)
     level.gen()
