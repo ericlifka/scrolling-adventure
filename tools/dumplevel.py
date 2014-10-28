@@ -14,9 +14,6 @@ import argparse
 
 from PIL import Image
 
-HEADER = """{
-    "name": "%s","""
-
 PLAYER = (255, 255, 255, 255)
 
 TILES = {
