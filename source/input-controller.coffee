@@ -18,3 +18,4 @@ class InputController
         up: @keyCache['W']
         down: @keyCache['S']
         jump: @keyCache[' ']
+        fire: @keyCache['J']

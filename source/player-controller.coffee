@@ -26,6 +26,10 @@ class PlayerController
 
     level: null
 
+    fireRate: 1000  # milliseconds to reload
+    lastFire: null
+    bulletSpeed: 50
+
     constructor: ->
         @hitBox = { height: 34, width: 20 }
         @position = { x: 0, y: 0 }
@@ -38,6 +42,7 @@ class PlayerController
     reset: ->
         # other things eventually
         @velocity = { x: 0, y: 0 }
+        @lastFire = new Date()
 
     setupSprites: ->
         @sprite = new PIXI.MovieClip [
@@ -56,13 +61,12 @@ class PlayerController
         @sprite.position.y = @position.y
         @sprite.pivot.set 40, 0
 
-    update: (elapsedTime, inputState) ->
-        timeRatio = elapsedTime / 1000
-
+    update: (timeRatio, inputState) ->
         @updateXVelocity inputState, timeRatio
         @updateYVelocity inputState, timeRatio
         @updatePosition timeRatio
         @updateDirection()
+        @checkWeaponFire inputState
 
     updateXVelocity: (inputState, timeRatio) ->
         if inputState.right
@@ -171,3 +175,16 @@ class PlayerController
             @doubleJump = false
             @velocity.y = 0
             @position.y = collision
+
+    checkWeaponFire: (inputState) ->
+        if inputState.fire
+            now = new Date()
+            if now - @lastFire > @fireRate
+                @lastFire = now
+                @level.spawnFriendlyBullet @position, @bulletVelocity()
+
+    bulletVelocity: ->
+#        x: (if @facingRight then 1 else -1) + @velocity.x
+#        y: @velocity.y
+        x: (if @facingRight then 1 else -1) * @bulletSpeed
+        y: 0

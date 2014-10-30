@@ -5,8 +5,15 @@ class LevelController
     player: null
     loader: null
 
+    platforms: null
+    bullets: null
+
     constructor: ->
         @platforms = []
+        @bullets = {
+            friendly: []
+            enemy: []
+        }
 
     load: (levelIdentifier) ->
         @description = @loader.getLevelDescription levelIdentifier
@@ -27,7 +34,10 @@ class LevelController
         @background.position.y = 0
 
     update: (elapsedTime, inputState) ->
-        @player.update elapsedTime, inputState
+        timeRatio = elapsedTime / 1000
+
+        @player.update timeRatio, inputState
+        @updateBullets timeRatio
 
     testCollision: (x, xStep, y, yStep) ->
         # Return the floor height if there was a collision
@@ -61,3 +71,17 @@ class LevelController
             }
 
         null
+
+    spawnFriendlyBullet: (position, velocity) ->
+        bullet = {
+            position
+            velocity
+            sprite: new PIXI.Sprite.fromImage 'assets/Platform-Metal.png'
+        }
+        @bullets.friendly.push bullet
+        @camera.addBullet bullet
+
+    updateBullets: (timeRatio) ->
+        for bullet in @bullets.friendly
+            bullet.position.x += bullet.velocity.x * timeRatio
+            bullet.position.y += bullet.velocity.y * timeRatio

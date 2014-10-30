@@ -19,6 +19,7 @@ class CameraController
         @checkPlayerPosition()
         @updatePlayerSprite()
         @updatePlatforms()
+        @updateBullets()
 
     reset: ->
         @position.x = 0
@@ -28,6 +29,9 @@ class CameraController
     initializePlayer: ->
         @player.initialize()
         @stage.addChild @player.sprite
+
+    addBullet: (bullet) ->
+        @stage.addChild bullet.sprite
 
     initializePlatforms: ->
         @stage.addChild @level.background
@@ -54,3 +58,7 @@ class CameraController
     updatePlatforms: ->
         for platform in @level.platforms
             [platform.sprite.position.x, platform.sprite.position.y] = @translateCoordinates platform.start, platform.height
+
+    updateBullets: ->
+        for bullet in @level.bullets.friendly
+            [bullet.sprite.position.x, bullet.sprite.position.y] = @translateCoordinates bullet.position.x, bullet.position.y
