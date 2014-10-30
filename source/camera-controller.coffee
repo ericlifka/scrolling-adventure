@@ -62,3 +62,7 @@ class CameraController
     updateBullets: ->
         for bullet in @level.bullets.friendly
             [bullet.sprite.position.x, bullet.sprite.position.y] = @translateCoordinates bullet.position.x, bullet.position.y
+
+    clearBullets: (bullets) ->
+        for bullet in bullets
+            @stage.removeChild bullet.sprite

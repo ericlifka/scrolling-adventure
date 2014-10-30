@@ -27,6 +27,7 @@ class LevelController
     reset: ->
         @player.jumpToPosition @description.startingPosition
         @camera.reset()
+        @clearBullets()
 
     loadBackground: ->
         @background = PIXI.Sprite.fromImage 'assets/Background.png'
@@ -85,3 +86,9 @@ class LevelController
         for bullet in @bullets.friendly
             bullet.position.x += bullet.velocity.x * timeRatio
             bullet.position.y += bullet.velocity.y * timeRatio
+
+    clearBullets: ->
+        @camera.clearBullets @bullets.friendly
+        @camera.clearBullets @bullets.enemy
+        @bullets.friendly = []
+        @bullets.enemy = []
