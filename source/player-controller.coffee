@@ -26,7 +26,7 @@ class PlayerController
 
     level: null
 
-    fireRate: 1000  # milliseconds to reload
+    fireRate: 200  # milliseconds to reload
     lastFire: null
     bulletSpeed: 750
     gunHeight: 20
