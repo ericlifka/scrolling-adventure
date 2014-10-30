@@ -28,7 +28,7 @@ class PlayerController
 
     fireRate: 1000  # milliseconds to reload
     lastFire: null
-    bulletSpeed: 50
+    bulletSpeed: 750
     gunHeight: 20
 
     constructor: ->
