@@ -189,7 +189,5 @@ class PlayerController
         y: @position.y + @gunHeight
 
     bulletVelocity: ->
-#        x: (if @facingRight then 1 else -1) + @velocity.x
-#        y: @velocity.y
         x: (if @facingRight then 1 else -1) * @bulletSpeed
         y: 0
