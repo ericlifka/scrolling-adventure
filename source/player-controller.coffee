@@ -29,6 +29,7 @@ class PlayerController
     fireRate: 1000  # milliseconds to reload
     lastFire: null
     bulletSpeed: 50
+    gunHeight: 20
 
     constructor: ->
         @hitBox = { height: 34, width: 20 }
@@ -185,7 +186,7 @@ class PlayerController
 
     bulletPosition: ->
         x: @position.x
-        y: @position.y
+        y: @position.y + @gunHeight
 
     bulletVelocity: ->
 #        x: (if @facingRight then 1 else -1) + @velocity.x
