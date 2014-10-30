@@ -181,7 +181,11 @@ class PlayerController
             now = new Date()
             if now - @lastFire > @fireRate
                 @lastFire = now
-                @level.spawnFriendlyBullet @position, @bulletVelocity()
+                @level.spawnFriendlyBullet @bulletPosition(), @bulletVelocity()
+
+    bulletPosition: ->
+        x: @position.x
+        y: @position.y
 
     bulletVelocity: ->
 #        x: (if @facingRight then 1 else -1) + @velocity.x
