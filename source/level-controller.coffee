@@ -76,7 +76,7 @@ class LevelController
         bullet = {
             position
             velocity
-            sprite: new PIXI.Sprite.fromImage 'assets/Platform-Metal.png'
+            sprite: new PIXI.Sprite.fromImage 'assets/bullet.png'
         }
         @bullets.friendly.push bullet
         @camera.addBullet bullet
