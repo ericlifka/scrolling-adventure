@@ -7,5 +7,5 @@ Side scrolling, platforming, spell casting RPG mayhem in the style of super smas
 ```
 ./compile.sh&
 ./build.sh
-open index.html
+node-webkit out
 ```
