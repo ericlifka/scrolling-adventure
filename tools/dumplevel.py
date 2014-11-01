@@ -44,7 +44,7 @@ class LevelGenerator(object):
     def world_coords(self, pos):
         x, y = pos
         w, h = self.tile_dimensions
-        return ((x * w), ((self.image_height - y) * h))
+        return ((x * w), ((self.image_height - 1 - y) * h))
 
     def collect_platform(self, coords, tile_id):
         self.platforms.append(Platform(coords, self.tile_dimensions, tile_id))
@@ -97,7 +97,7 @@ class LevelGenerator(object):
         self.write_dimensions(level)
         self.write_platforms(level)
         self.write_player_start(level)
-        print(json.dumps(level))
+        print(json.dumps(level, indent=4))
 
     def gen(self):
         self.read_level_image()

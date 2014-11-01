@@ -29,7 +29,7 @@ class PlayerController
     fireRate: 200  # milliseconds to reload
     lastFire: null
     bulletSpeed: 750
-    gunHeight: 20
+    gunHeight: 10
 
     constructor: ->
         @hitBox = { height: 34, width: 20 }
@@ -65,6 +65,7 @@ class PlayerController
     update: (timeRatio, inputState) ->
         @updateXVelocity inputState, timeRatio
         @updateYVelocity inputState, timeRatio
+        @checkFloorCollision timeRatio
         @updatePosition timeRatio
         @updateDirection()
         @checkWeaponFire inputState
@@ -96,7 +97,6 @@ class PlayerController
             @jumpReleased = true
 
         @accelerateDown timeRatio
-        @checkFloorCollision timeRatio
 
     accelerateRight: (timeRatio) ->
         if @jumping
@@ -166,16 +166,21 @@ class PlayerController
         xStep = @position.x + @velocity.x * timeRatio
         yStep = @position.y + @velocity.y * timeRatio
 
-        [collision, died] = @level.testCollision @position.x, xStep, @position.y, yStep
+        [collX, collY, died] = @level.testCollision(@position.x, xStep,
+                                                    @position.y, yStep)
 
         if died
             @level.reset()
 
-        if collision
+        if collY
             @jumping = false
             @doubleJump = false
             @velocity.y = 0
-            @position.y = collision
+            @position.y = collY
+
+        if collX
+            @velocity.x = 0
+            @position.x = collX
 
     checkWeaponFire: (inputState) ->
         if inputState.fire

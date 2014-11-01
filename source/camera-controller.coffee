@@ -39,7 +39,8 @@ class CameraController
             @stage.addChild platform.sprite
 
     translateCoordinates: (x, y) ->
-        ### Map world coordinates into screen coordinates based on camera position and screen height ###
+        # Map world coordinates into screen coordinates based on
+        # camera position and screen height 
         [x - @position.x, @height - (y - @position.y)]
 
     checkPlayerPosition: ->
@@ -57,11 +58,13 @@ class CameraController
 
     updatePlatforms: ->
         for platform in @level.platforms
-            [platform.sprite.position.x, platform.sprite.position.y] = @translateCoordinates platform.start, platform.height
+            [x, y] = @translateCoordinates platform.start, platform.height + 64
+            platform.sprite.x = Math.round x
+            platform.sprite.y = Math.round y
 
     updateBullets: ->
         for bullet in @level.bullets.friendly
-            [bullet.sprite.position.x, bullet.sprite.position.y] = @translateCoordinates bullet.position.x, bullet.position.y
+            [bullet.sprite.position.x, bullet.sprite.position.y] = @translateCoordinates bullet.position.x, bullet.position.y + 4
 
     clearBullets: (bullets) ->
         for bullet in bullets

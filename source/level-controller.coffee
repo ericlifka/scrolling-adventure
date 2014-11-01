@@ -41,23 +41,45 @@ class LevelController
         @updateBullets timeRatio
 
     testCollision: (x, xStep, y, yStep) ->
-        # Return the floor height if there was a collision
+        # Returns the tuple [collision-x, collision-y, died]
         # and null if there was not
         # FIXME: returning flag if player death was detected
         #        need to think about how player state can
         #        be affected by the level
+        playerWidth = 5
+        collX = null
+        collY = null
         for {start, end, height} in @description.platforms
             # This is all very cheat-y but it seems to work
-            if xStep < end and xStep >= start and y >= height and yStep < height
-                return [height, false]
+            top = height + 64
+            if xStep < end and xStep >= start
+                if y >= top and yStep < top
+                    collY = top
+                    yStep = top
+                    break
+
+        for {start, end, height} in @description.platforms
+            top = height + 64
+            if yStep >= height and yStep < top
+                if ((x + playerWidth) <= start \
+                        and (xStep + playerWidth) > start)
+                    collX = start - playerWidth
+                    break
+                else if ((x - playerWidth) >= end \
+                        and (xStep - playerWidth) < end)
+                    collX = end + playerWidth
+                    break
+
+        if collX or collY
+            return [collX, collY, false]
 
         if y >= 0.0 and yStep < 0.0
-            return [0, false]
+            return [null, 0, false]
 
         if yStep < 10.0
-            return [null, true]
+            return [null, null, true]
 
-        [null, false]
+        [null, null, false]
 
     loadPlatforms: ->
         for platform in @description.platforms
@@ -70,8 +92,6 @@ class LevelController
                 length: length
                 sprite: sprite
             }
-
-        null
 
     spawnFriendlyBullet: (position, velocity) ->
         bullet = {

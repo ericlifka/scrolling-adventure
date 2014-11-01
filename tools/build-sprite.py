@@ -47,7 +47,6 @@ class SpriteMaker(object):
         }
 
     def gen_frames(self, output):
-        colids = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
         frames = {}
         for frameno in xrange(self.num_frames):
             rowno = frameno / self.columns
