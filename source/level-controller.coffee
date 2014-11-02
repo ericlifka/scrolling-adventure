@@ -4,6 +4,7 @@ class LevelController
     camera: null
     player: null
     loader: null
+    entities: []
 
     platforms: null
     bullets: null
@@ -38,36 +39,49 @@ class LevelController
         timeRatio = elapsedTime / 1000
 
         @player.update timeRatio, inputState
+        for entity in @entities
+            entity.update timeRatio
         @updateBullets timeRatio
 
-    testCollision: (x, xStep, y, yStep) ->
+    testCollision: (x, y, xStep, yStep, hitBox) ->
+        # This is all very cheat-y but it seems to work
+        #
+        # x, y -> The bottom left coordinate of the box
+        # xStep, yStep -> The new bottom left coordinate being tested
+        # hitBox 
+        # 
         # Returns the tuple [collision-x, collision-y, died]
-        # and null if there was not
+        # where collision-x/y are the bottom left coordinates
         # FIXME: returning flag if player death was detected
         #        need to think about how player state can
         #        be affected by the level
-        playerWidth = 5
         collX = null
         collY = null
+        {width, height} = hitBox
+        x2 = x + width
+        x2Step = xStep + width
         for {start, end, height} in @description.platforms
-            # This is all very cheat-y but it seems to work
             top = height + 64
-            if xStep < end and xStep >= start
+            # if either bottom point is in the x-range
+            # then we need to test the new Y.
+            if (xStep < end and xStep >= start) \
+                    or (x2Step < end and x2Step >= start)
                 if y >= top and yStep < top
                     collY = top
-                    yStep = top
+                    yStep = top # new yStep based on collision
                     break
 
         for {start, end, height} in @description.platforms
             top = height + 64
             if yStep >= height and yStep < top
-                if ((x + playerWidth) <= start \
-                        and (xStep + playerWidth) > start)
-                    collX = start - playerWidth
+                # Bottom edge is in the height of the tile
+                if (x2Step > start and x2Step <= end)
+                    # right edge intersects tile
+                    collX = start - width
                     break
-                else if ((x - playerWidth) >= end \
-                        and (xStep - playerWidth) < end)
-                    collX = end + playerWidth
+                else if (xStep > start and xStep <= end)
+                    # left edge intersects tile
+                    collX = end
                     break
 
         if collX or collY

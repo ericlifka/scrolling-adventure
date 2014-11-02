@@ -6,6 +6,8 @@ window.GameController = class GameController
         'assets/Background.png'
         'assets/Platform-Metal.png'
         'assets/bullet.png'
+        'assets/turret.png'
+        'assets/enemy_bullet.png'
     ]
 
     constructor: (@viewport) ->

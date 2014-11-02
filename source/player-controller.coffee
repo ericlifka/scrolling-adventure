@@ -22,7 +22,7 @@ class PlayerController
 
     sprite: null
     spriteScale: 1
-    characterHeight: 70 # represents the magical bullshit offset we have to move the character sprite by to get it to show up in the right place
+    spriteDimensions: null
 
     level: null
 
@@ -32,7 +32,8 @@ class PlayerController
     gunHeight: 10
 
     constructor: ->
-        @hitBox = { height: 34, width: 20 }
+        @hitBox = { height: 34, width: 24 }
+        @spriteDimensions = { height: 34, width: 24 }
         @position = { x: 0, y: 0 }
         @velocity = { x: 0, y: 0 }
 
@@ -56,11 +57,13 @@ class PlayerController
         ]
 
     initialize: ->
-        @sprite.scale.x = -@spriteScale
+        @sprite.scale.x = @spriteScale
         @sprite.scale.y = @spriteScale
         @sprite.position.x = @position.x
         @sprite.position.y = @position.y
-        @sprite.pivot.set 40, 0
+        # Need to figure out how to keep the
+        # bounding box in the right place 
+        @sprite.pivot.set 12, 0
 
     update: (timeRatio, inputState) ->
         @updateXVelocity inputState, timeRatio
@@ -162,12 +165,18 @@ class PlayerController
         else
             @sprite.scale.x = -@spriteScale
 
+    spriteCoordinates: ->
+        # Return upperleft point for the sprite origin xlations
+        spriteX = @position.x + (@spriteDimensions.width / 2) # because pivot
+        spriteY = @position.y + @spriteDimensions.height
+        [spriteX, spriteY]
+
     checkFloorCollision: (timeRatio) ->
         xStep = @position.x + @velocity.x * timeRatio
         yStep = @position.y + @velocity.y * timeRatio
 
-        [collX, collY, died] = @level.testCollision(@position.x, xStep,
-                                                    @position.y, yStep)
+        [collX, collY, died] = @level.testCollision(
+                @position.x, @position.y, xStep, yStep, @hitBox)
 
         if died
             @level.reset()

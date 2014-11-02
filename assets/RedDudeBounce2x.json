@@ -2,121 +2,121 @@
     "frames": {
         "reddude.000": {
             "frame": {
-                "h": 64, 
-                "w": 64, 
+                "h": 34, 
+                "w": 24, 
                 "x": 0, 
                 "y": 0
             }, 
             "rotated": false, 
             "sourceSize": {
                 "h": 34, 
-                "w": 20
+                "w": 24
             }, 
             "spriteSourceSize": {
                 "h": 34, 
-                "w": 20, 
-                "x": 18, 
-                "y": 18
+                "w": 24, 
+                "x": 0, 
+                "y": 0
             }, 
             "trimmed": true
         }, 
         "reddude.001": {
             "frame": {
-                "h": 64, 
-                "w": 64, 
-                "x": 64, 
+                "h": 34, 
+                "w": 24, 
+                "x": 24, 
                 "y": 0
             }, 
             "rotated": false, 
             "sourceSize": {
                 "h": 34, 
-                "w": 20
+                "w": 24
             }, 
             "spriteSourceSize": {
                 "h": 34, 
-                "w": 20, 
-                "x": 18, 
-                "y": 18
+                "w": 24, 
+                "x": 0, 
+                "y": 0
             }, 
             "trimmed": true
         }, 
         "reddude.002": {
             "frame": {
-                "h": 64, 
-                "w": 64, 
-                "x": 128, 
+                "h": 34, 
+                "w": 24, 
+                "x": 48, 
                 "y": 0
             }, 
             "rotated": false, 
             "sourceSize": {
                 "h": 34, 
-                "w": 20
+                "w": 24
             }, 
             "spriteSourceSize": {
                 "h": 34, 
-                "w": 20, 
-                "x": 18, 
-                "y": 18
+                "w": 24, 
+                "x": 0, 
+                "y": 0
             }, 
             "trimmed": true
         }, 
         "reddude.003": {
             "frame": {
-                "h": 64, 
-                "w": 64, 
-                "x": 192, 
+                "h": 34, 
+                "w": 24, 
+                "x": 72, 
                 "y": 0
             }, 
             "rotated": false, 
             "sourceSize": {
                 "h": 34, 
-                "w": 20
+                "w": 24
             }, 
             "spriteSourceSize": {
                 "h": 34, 
-                "w": 20, 
-                "x": 18, 
-                "y": 18
+                "w": 24, 
+                "x": 0, 
+                "y": 0
             }, 
             "trimmed": true
         }, 
         "reddude.004": {
             "frame": {
-                "h": 64, 
-                "w": 64, 
-                "x": 256, 
+                "h": 34, 
+                "w": 24, 
+                "x": 96, 
                 "y": 0
             }, 
             "rotated": false, 
             "sourceSize": {
                 "h": 34, 
-                "w": 20
+                "w": 24
             }, 
             "spriteSourceSize": {
                 "h": 34, 
-                "w": 20, 
-                "x": 18, 
-                "y": 18
+                "w": 24, 
+                "x": 0, 
+                "y": 0
             }, 
             "trimmed": true
         }, 
         "reddude.005": {
             "frame": {
-                "h": 64, 
-                "w": 64, 
-                "x": 320, 
+                "h": 34, 
+                "w": 24, 
+                "x": 120, 
                 "y": 0
             }, 
             "rotated": false, 
             "sourceSize": {
                 "h": 34, 
-                "w": 20
+                "w": 24
             }, 
             "spriteSourceSize": {
                 "h": 34, 
-                "w": 20, 
-                "x": 18, 
-                "y": 18
+                "w": 24, 
+                "x": 0, 
+                "y": 0
             }, 
             "trimmed": true
         }
@@ -125,8 +125,8 @@
         "image": "RedDudeBounce2x.png", 
         "scale": 1, 
         "size": {
-            "h": 64, 
-            "w": 384
+            "h": 34, 
+            "w": 144
         }
     }
 }
