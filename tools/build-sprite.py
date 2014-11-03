@@ -76,10 +76,10 @@ class SpriteMaker(object):
         output['frames'] = frames
 
 if __name__ == '__main__':
-    options = {'sprite_width': 24,
-               'sprite_height': 34,
+    options = {'sprite_width': 64,
+               'sprite_height': 64,
                'sprite_offset_x': 0,
                'sprite_offset_y': 0}
-    sprite_maker = SpriteMaker('reddude', '../assets/RedDudeBounce2x.png',
-                               6, 6, 1, options=options)
+    sprite_maker = SpriteMaker('tileset', '../assets/RedDudeTileSet2x.png',
+                               8, 10, 1, options=options)
     sprite_maker.gen('output.json')

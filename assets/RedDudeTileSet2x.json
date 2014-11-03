@@ -1,0 +1,172 @@
+{
+    "frames": {
+        "Platform-Metal": {
+            "frame": {
+                "h": 64, 
+                "w": 64, 
+                "x": 0, 
+                "y": 0
+            }, 
+            "rotated": false, 
+            "sourceSize": {
+                "h": 64, 
+                "w": 64
+            }, 
+            "spriteSourceSize": {
+                "h": 64, 
+                "w": 64, 
+                "x": 0, 
+                "y": 0
+            }, 
+            "trimmed": true
+        }, 
+        "Platform-Bridge": {
+            "frame": {
+                "h": 64, 
+                "w": 64, 
+                "x": 64, 
+                "y": 0
+            }, 
+            "rotated": false, 
+            "sourceSize": {
+                "h": 64, 
+                "w": 64
+            }, 
+            "spriteSourceSize": {
+                "h": 64, 
+                "w": 64, 
+                "x": 0, 
+                "y": 0
+            }, 
+            "trimmed": true
+        }, 
+        "Railings": {
+            "frame": {
+                "h": 64, 
+                "w": 64, 
+                "x": 128, 
+                "y": 0
+            }, 
+            "rotated": false, 
+            "sourceSize": {
+                "h": 64, 
+                "w": 64
+            }, 
+            "spriteSourceSize": {
+                "h": 64, 
+                "w": 64, 
+                "x": 0, 
+                "y": 0
+            }, 
+            "trimmed": true
+        }, 
+        "RailingsRear": {
+            "frame": {
+                "h": 64, 
+                "w": 64, 
+                "x": 192, 
+                "y": 0
+            }, 
+            "rotated": false, 
+            "sourceSize": {
+                "h": 64, 
+                "w": 64
+            }, 
+            "spriteSourceSize": {
+                "h": 64, 
+                "w": 64, 
+                "x": 0, 
+                "y": 0
+            }, 
+            "trimmed": true
+        }, 
+        "Antenna.000": {
+            "frame": {
+                "h": 64, 
+                "w": 64, 
+                "x": 256, 
+                "y": 0
+            }, 
+            "rotated": false, 
+            "sourceSize": {
+                "h": 64, 
+                "w": 64
+            }, 
+            "spriteSourceSize": {
+                "h": 64, 
+                "w": 64, 
+                "x": 0, 
+                "y": 0
+            }, 
+            "trimmed": true
+        }, 
+        "Antenna.001": {
+            "frame": {
+                "h": 64, 
+                "w": 64, 
+                "x": 320, 
+                "y": 0
+            }, 
+            "rotated": false, 
+            "sourceSize": {
+                "h": 64, 
+                "w": 64
+            }, 
+            "spriteSourceSize": {
+                "h": 64, 
+                "w": 64, 
+                "x": 0, 
+                "y": 0
+            }, 
+            "trimmed": true
+        }, 
+        "Antenna.002": {
+            "frame": {
+                "h": 64, 
+                "w": 64, 
+                "x": 384, 
+                "y": 0
+            }, 
+            "rotated": false, 
+            "sourceSize": {
+                "h": 64, 
+                "w": 64
+            }, 
+            "spriteSourceSize": {
+                "h": 64, 
+                "w": 64, 
+                "x": 0, 
+                "y": 0
+            }, 
+            "trimmed": true
+        }, 
+        "Antenna.003": {
+            "frame": {
+                "h": 64, 
+                "w": 64, 
+                "x": 448, 
+                "y": 0
+            }, 
+            "rotated": false, 
+            "sourceSize": {
+                "h": 64, 
+                "w": 64
+            }, 
+            "spriteSourceSize": {
+                "h": 64, 
+                "w": 64, 
+                "x": 0, 
+                "y": 0
+            }, 
+            "trimmed": true
+        }
+    }, 
+    "meta": {
+        "image": "RedDudeTileSet2x.png", 
+        "scale": 1, 
+        "size": {
+            "h": 64, 
+            "w": 640
+        }
+    }
+}

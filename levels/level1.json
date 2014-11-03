@@ -1,388 +1,1481 @@
 {
-    "startingPosition": {
-        "y": 448, 
-        "x": 64
-    }, 
+    "name": "level1", 
     "platforms": [
         {
+            "frames": [
+                "Platform-Metal"
+            ], 
             "start": 0, 
+            "spriteType": "static", 
             "end": 64, 
             "height": 64
         }, 
         {
+            "frames": [
+                "Platform-Metal"
+            ], 
             "start": 64, 
+            "spriteType": "static", 
             "end": 128, 
             "height": 64
         }, 
         {
+            "frames": [
+                "Platform-Metal"
+            ], 
             "start": 128, 
+            "spriteType": "static", 
             "end": 192, 
             "height": 64
         }, 
         {
+            "frames": [
+                "Platform-Metal"
+            ], 
             "start": 192, 
+            "spriteType": "static", 
             "end": 256, 
             "height": 64
         }, 
         {
+            "frames": [
+                "Platform-Metal"
+            ], 
             "start": 256, 
+            "spriteType": "static", 
             "end": 320, 
             "height": 64
         }, 
         {
+            "frames": [
+                "Platform-Metal"
+            ], 
             "start": 320, 
+            "spriteType": "static", 
             "end": 384, 
             "height": 64
         }, 
         {
+            "frames": [
+                "Platform-Metal"
+            ], 
             "start": 384, 
+            "spriteType": "static", 
             "end": 448, 
             "height": 64
         }, 
         {
+            "frames": [
+                "Platform-Metal"
+            ], 
             "start": 448, 
+            "spriteType": "static", 
             "end": 512, 
             "height": 64
         }, 
         {
+            "frames": [
+                "Platform-Metal"
+            ], 
             "start": 512, 
+            "spriteType": "static", 
             "end": 576, 
             "height": 64
         }, 
         {
+            "frames": [
+                "Platform-Metal"
+            ], 
             "start": 576, 
+            "spriteType": "static", 
             "end": 640, 
             "height": 64
         }, 
         {
+            "frames": [
+                "Platform-Metal"
+            ], 
             "start": 960, 
+            "spriteType": "static", 
             "end": 1024, 
             "height": 64
         }, 
         {
+            "frames": [
+                "Platform-Metal"
+            ], 
             "start": 1024, 
+            "spriteType": "static", 
             "end": 1088, 
             "height": 64
         }, 
         {
+            "frames": [
+                "Platform-Metal"
+            ], 
             "start": 1088, 
+            "spriteType": "static", 
             "end": 1152, 
             "height": 64
         }, 
         {
+            "frames": [
+                "Platform-Metal"
+            ], 
             "start": 1152, 
+            "spriteType": "static", 
             "end": 1216, 
             "height": 64
         }, 
         {
+            "frames": [
+                "Platform-Metal"
+            ], 
             "start": 1216, 
+            "spriteType": "static", 
             "end": 1280, 
             "height": 64
         }, 
         {
+            "frames": [
+                "Platform-Metal"
+            ], 
             "start": 1280, 
+            "spriteType": "static", 
             "end": 1344, 
             "height": 64
         }, 
         {
+            "frames": [
+                "Platform-Metal"
+            ], 
             "start": 1344, 
+            "spriteType": "static", 
             "end": 1408, 
             "height": 64
         }, 
         {
+            "frames": [
+                "Platform-Metal"
+            ], 
             "start": 1408, 
+            "spriteType": "static", 
+            "end": 1472, 
+            "height": 256
+        }, 
+        {
+            "frames": [
+                "Platform-Metal"
+            ], 
+            "start": 1408, 
+            "spriteType": "static", 
             "end": 1472, 
             "height": 64
         }, 
         {
+            "frames": [
+                "Platform-Bridge"
+            ], 
             "start": 1472, 
+            "spriteType": "static", 
+            "end": 1536, 
+            "height": 256
+        }, 
+        {
+            "frames": [
+                "Platform-Metal"
+            ], 
+            "start": 1472, 
+            "spriteType": "static", 
             "end": 1536, 
             "height": 64
         }, 
         {
+            "frames": [
+                "Platform-Bridge"
+            ], 
             "start": 1536, 
+            "spriteType": "static", 
+            "end": 1600, 
+            "height": 256
+        }, 
+        {
+            "frames": [
+                "Platform-Metal"
+            ], 
+            "start": 1536, 
+            "spriteType": "static", 
             "end": 1600, 
             "height": 64
         }, 
         {
+            "frames": [
+                "Platform-Bridge"
+            ], 
             "start": 1600, 
+            "spriteType": "static", 
+            "end": 1664, 
+            "height": 256
+        }, 
+        {
+            "frames": [
+                "Platform-Metal"
+            ], 
+            "start": 1600, 
+            "spriteType": "static", 
             "end": 1664, 
             "height": 64
         }, 
         {
+            "frames": [
+                "Platform-Bridge"
+            ], 
             "start": 1664, 
+            "spriteType": "static", 
+            "end": 1728, 
+            "height": 256
+        }, 
+        {
+            "frames": [
+                "Platform-Metal"
+            ], 
+            "start": 1664, 
+            "spriteType": "static", 
             "end": 1728, 
             "height": 64
         }, 
         {
+            "frames": [
+                "Platform-Bridge"
+            ], 
             "start": 1728, 
+            "spriteType": "static", 
             "end": 1792, 
             "height": 256
         }, 
         {
+            "frames": [
+                "Platform-Bridge"
+            ], 
             "start": 1792, 
+            "spriteType": "static", 
             "end": 1856, 
             "height": 256
         }, 
         {
+            "frames": [
+                "Platform-Bridge"
+            ], 
             "start": 1856, 
+            "spriteType": "static", 
             "end": 1920, 
             "height": 256
         }, 
         {
+            "frames": [
+                "Platform-Metal"
+            ], 
             "start": 1920, 
+            "spriteType": "static", 
             "end": 1984, 
             "height": 256
         }, 
         {
-            "start": 1984, 
-            "end": 2048, 
-            "height": 192
-        }, 
-        {
-            "start": 2048, 
-            "end": 2112, 
-            "height": 192
-        }, 
-        {
-            "start": 2112, 
-            "end": 2176, 
-            "height": 192
-        }, 
-        {
+            "frames": [
+                "Platform-Metal"
+            ], 
             "start": 2176, 
+            "spriteType": "static", 
             "end": 2240, 
             "height": 256
         }, 
         {
+            "frames": [
+                "Platform-Metal"
+            ], 
             "start": 2240, 
+            "spriteType": "static", 
             "end": 2304, 
             "height": 256
         }, 
         {
-            "start": 2304, 
-            "end": 2368, 
-            "height": 192
-        }, 
-        {
+            "frames": [
+                "Platform-Metal"
+            ], 
             "start": 2496, 
+            "spriteType": "static", 
             "end": 2560, 
             "height": 192
         }, 
         {
+            "frames": [
+                "Platform-Metal"
+            ], 
             "start": 2560, 
+            "spriteType": "static", 
             "end": 2624, 
             "height": 256
         }, 
         {
+            "frames": [
+                "Platform-Metal"
+            ], 
             "start": 2624, 
+            "spriteType": "static", 
             "end": 2688, 
             "height": 320
         }, 
         {
+            "frames": [
+                "Platform-Metal"
+            ], 
             "start": 2688, 
+            "spriteType": "static", 
             "end": 2752, 
             "height": 384
         }, 
         {
+            "frames": [
+                "Platform-Metal"
+            ], 
             "start": 2752, 
+            "spriteType": "static", 
             "end": 2816, 
             "height": 448
         }, 
         {
+            "frames": [
+                "Platform-Metal"
+            ], 
             "start": 2752, 
+            "spriteType": "static", 
             "end": 2816, 
             "height": 64
         }, 
         {
+            "frames": [
+                "Platform-Bridge"
+            ], 
             "start": 2816, 
+            "spriteType": "static", 
             "end": 2880, 
             "height": 448
         }, 
         {
+            "frames": [
+                "Platform-Metal"
+            ], 
             "start": 2816, 
+            "spriteType": "static", 
             "end": 2880, 
             "height": 64
         }, 
         {
+            "frames": [
+                "Platform-Bridge"
+            ], 
             "start": 2880, 
+            "spriteType": "static", 
             "end": 2944, 
             "height": 448
         }, 
         {
+            "frames": [
+                "Platform-Metal"
+            ], 
             "start": 2880, 
+            "spriteType": "static", 
             "end": 2944, 
             "height": 64
         }, 
         {
+            "frames": [
+                "Platform-Bridge"
+            ], 
             "start": 2944, 
+            "spriteType": "static", 
             "end": 3008, 
             "height": 448
         }, 
         {
+            "frames": [
+                "Platform-Metal"
+            ], 
             "start": 2944, 
+            "spriteType": "static", 
             "end": 3008, 
             "height": 64
         }, 
         {
+            "frames": [
+                "Platform-Bridge"
+            ], 
             "start": 3008, 
+            "spriteType": "static", 
             "end": 3072, 
             "height": 448
         }, 
         {
+            "frames": [
+                "Platform-Bridge"
+            ], 
             "start": 3072, 
+            "spriteType": "static", 
             "end": 3136, 
             "height": 448
         }, 
         {
+            "frames": [
+                "Platform-Bridge"
+            ], 
             "start": 3136, 
+            "spriteType": "static", 
             "end": 3200, 
             "height": 448
         }, 
         {
+            "frames": [
+                "Platform-Bridge"
+            ], 
             "start": 3200, 
+            "spriteType": "static", 
             "end": 3264, 
             "height": 448
         }, 
         {
+            "frames": [
+                "Platform-Metal"
+            ], 
             "start": 3200, 
+            "spriteType": "static", 
             "end": 3264, 
             "height": 256
         }, 
         {
+            "frames": [
+                "Platform-Bridge"
+            ], 
             "start": 3264, 
+            "spriteType": "static", 
             "end": 3328, 
             "height": 448
         }, 
         {
+            "frames": [
+                "Platform-Metal"
+            ], 
             "start": 3264, 
+            "spriteType": "static", 
             "end": 3328, 
             "height": 256
         }, 
         {
+            "frames": [
+                "Platform-Metal"
+            ], 
             "start": 3328, 
+            "spriteType": "static", 
             "end": 3392, 
             "height": 448
         }, 
         {
+            "frames": [
+                "Platform-Metal"
+            ], 
             "start": 3328, 
+            "spriteType": "static", 
             "end": 3392, 
             "height": 256
         }, 
         {
+            "frames": [
+                "Platform-Metal"
+            ], 
             "start": 3392, 
+            "spriteType": "static", 
             "end": 3456, 
             "height": 256
         }, 
         {
+            "frames": [
+                "Platform-Metal"
+            ], 
             "start": 3456, 
+            "spriteType": "static", 
             "end": 3520, 
             "height": 256
         }, 
         {
+            "frames": [
+                "Platform-Metal"
+            ], 
             "start": 3968, 
+            "spriteType": "static", 
             "end": 4032, 
             "height": 128
         }, 
         {
+            "frames": [
+                "Platform-Metal"
+            ], 
             "start": 4032, 
+            "spriteType": "static", 
             "end": 4096, 
             "height": 128
         }, 
         {
+            "frames": [
+                "Platform-Bridge"
+            ], 
             "start": 4096, 
+            "spriteType": "static", 
             "end": 4160, 
             "height": 128
         }, 
         {
+            "frames": [
+                "Platform-Bridge"
+            ], 
             "start": 4160, 
+            "spriteType": "static", 
             "end": 4224, 
             "height": 128
         }, 
         {
+            "frames": [
+                "Platform-Bridge"
+            ], 
             "start": 4224, 
+            "spriteType": "static", 
             "end": 4288, 
             "height": 128
         }, 
         {
+            "frames": [
+                "Platform-Bridge"
+            ], 
             "start": 4288, 
+            "spriteType": "static", 
             "end": 4352, 
             "height": 128
         }, 
         {
+            "frames": [
+                "Platform-Bridge"
+            ], 
             "start": 4352, 
+            "spriteType": "static", 
             "end": 4416, 
             "height": 128
         }, 
         {
+            "frames": [
+                "Platform-Bridge"
+            ], 
             "start": 4416, 
+            "spriteType": "static", 
             "end": 4480, 
             "height": 128
         }, 
         {
+            "frames": [
+                "Platform-Bridge"
+            ], 
             "start": 4480, 
+            "spriteType": "static", 
             "end": 4544, 
             "height": 128
         }, 
         {
+            "frames": [
+                "Platform-Bridge"
+            ], 
             "start": 4544, 
+            "spriteType": "static", 
             "end": 4608, 
             "height": 128
         }, 
         {
+            "frames": [
+                "Platform-Bridge"
+            ], 
             "start": 4608, 
+            "spriteType": "static", 
             "end": 4672, 
             "height": 128
         }, 
         {
+            "frames": [
+                "Platform-Bridge"
+            ], 
             "start": 4672, 
+            "spriteType": "static", 
             "end": 4736, 
             "height": 128
         }, 
         {
+            "frames": [
+                "Platform-Metal"
+            ], 
             "start": 4736, 
+            "spriteType": "static", 
             "end": 4800, 
             "height": 128
         }, 
         {
+            "frames": [
+                "Platform-Metal"
+            ], 
             "start": 4800, 
+            "spriteType": "static", 
             "end": 4864, 
             "height": 128
         }, 
         {
+            "frames": [
+                "Platform-Bridge"
+            ], 
             "start": 4864, 
+            "spriteType": "static", 
             "end": 4928, 
             "height": 128
         }, 
         {
+            "frames": [
+                "Platform-Bridge"
+            ], 
             "start": 4928, 
+            "spriteType": "static", 
             "end": 4992, 
             "height": 128
         }, 
         {
+            "frames": [
+                "Platform-Bridge"
+            ], 
             "start": 4992, 
+            "spriteType": "static", 
             "end": 5056, 
             "height": 128
         }, 
         {
+            "frames": [
+                "Platform-Bridge"
+            ], 
             "start": 5056, 
+            "spriteType": "static", 
             "end": 5120, 
             "height": 128
         }, 
         {
+            "frames": [
+                "Platform-Metal"
+            ], 
             "start": 5120, 
+            "spriteType": "static", 
             "end": 5184, 
             "height": 128
         }, 
         {
+            "frames": [
+                "Platform-Metal"
+            ], 
             "start": 5184, 
+            "spriteType": "static", 
             "end": 5248, 
             "height": 128
         }
     ], 
-    "name": "level1", 
+    "backTiles": [
+        {
+            "frames": [
+                "RailingsRear"
+            ], 
+            "start": 1408, 
+            "spriteType": "static", 
+            "end": 1472, 
+            "height": 320
+        }, 
+        {
+            "frames": [
+                "RailingsRear"
+            ], 
+            "start": 1472, 
+            "spriteType": "static", 
+            "end": 1536, 
+            "height": 320
+        }, 
+        {
+            "frames": [
+                "RailingsRear"
+            ], 
+            "start": 1536, 
+            "spriteType": "static", 
+            "end": 1600, 
+            "height": 320
+        }, 
+        {
+            "frames": [
+                "RailingsRear"
+            ], 
+            "start": 1600, 
+            "spriteType": "static", 
+            "end": 1664, 
+            "height": 320
+        }, 
+        {
+            "frames": [
+                "RailingsRear"
+            ], 
+            "start": 1664, 
+            "spriteType": "static", 
+            "end": 1728, 
+            "height": 320
+        }, 
+        {
+            "frames": [
+                "RailingsRear"
+            ], 
+            "start": 1728, 
+            "spriteType": "static", 
+            "end": 1792, 
+            "height": 320
+        }, 
+        {
+            "frames": [
+                "RailingsRear"
+            ], 
+            "start": 1792, 
+            "spriteType": "static", 
+            "end": 1856, 
+            "height": 320
+        }, 
+        {
+            "frames": [
+                "RailingsRear"
+            ], 
+            "start": 1856, 
+            "spriteType": "static", 
+            "end": 1920, 
+            "height": 320
+        }, 
+        {
+            "frames": [
+                "RailingsRear"
+            ], 
+            "start": 1920, 
+            "spriteType": "static", 
+            "end": 1984, 
+            "height": 320
+        }, 
+        {
+            "frames": [
+                "RailingsRear"
+            ], 
+            "start": 2496, 
+            "spriteType": "static", 
+            "end": 2560, 
+            "height": 256
+        }, 
+        {
+            "frames": [
+                "RailingsRear"
+            ], 
+            "start": 2560, 
+            "spriteType": "static", 
+            "end": 2624, 
+            "height": 320
+        }, 
+        {
+            "frames": [
+                "RailingsRear"
+            ], 
+            "start": 2624, 
+            "spriteType": "static", 
+            "end": 2688, 
+            "height": 384
+        }, 
+        {
+            "frames": [
+                "RailingsRear"
+            ], 
+            "start": 2688, 
+            "spriteType": "static", 
+            "end": 2752, 
+            "height": 448
+        }, 
+        {
+            "frames": [
+                "RailingsRear"
+            ], 
+            "start": 2752, 
+            "spriteType": "static", 
+            "end": 2816, 
+            "height": 512
+        }, 
+        {
+            "frames": [
+                "RailingsRear"
+            ], 
+            "start": 2816, 
+            "spriteType": "static", 
+            "end": 2880, 
+            "height": 512
+        }, 
+        {
+            "frames": [
+                "RailingsRear"
+            ], 
+            "start": 2880, 
+            "spriteType": "static", 
+            "end": 2944, 
+            "height": 512
+        }, 
+        {
+            "frames": [
+                "RailingsRear"
+            ], 
+            "start": 2944, 
+            "spriteType": "static", 
+            "end": 3008, 
+            "height": 512
+        }, 
+        {
+            "frames": [
+                "RailingsRear"
+            ], 
+            "start": 3008, 
+            "spriteType": "static", 
+            "end": 3072, 
+            "height": 512
+        }, 
+        {
+            "frames": [
+                "RailingsRear"
+            ], 
+            "start": 3072, 
+            "spriteType": "static", 
+            "end": 3136, 
+            "height": 512
+        }, 
+        {
+            "frames": [
+                "RailingsRear"
+            ], 
+            "start": 3136, 
+            "spriteType": "static", 
+            "end": 3200, 
+            "height": 512
+        }, 
+        {
+            "frames": [
+                "RailingsRear"
+            ], 
+            "start": 3200, 
+            "spriteType": "static", 
+            "end": 3264, 
+            "height": 512
+        }, 
+        {
+            "frames": [
+                "Antenna.000", 
+                "Antenna.001", 
+                "Antenna.002", 
+                "Antenna.003"
+            ], 
+            "start": 3264, 
+            "spriteType": "animated", 
+            "end": 3328, 
+            "height": 512
+        }, 
+        {
+            "frames": [
+                "RailingsRear"
+            ], 
+            "start": 3328, 
+            "spriteType": "static", 
+            "end": 3392, 
+            "height": 512
+        }, 
+        {
+            "frames": [
+                "RailingsRear"
+            ], 
+            "start": 3968, 
+            "spriteType": "static", 
+            "end": 4032, 
+            "height": 192
+        }, 
+        {
+            "frames": [
+                "RailingsRear"
+            ], 
+            "start": 4032, 
+            "spriteType": "static", 
+            "end": 4096, 
+            "height": 192
+        }, 
+        {
+            "frames": [
+                "RailingsRear"
+            ], 
+            "start": 4096, 
+            "spriteType": "static", 
+            "end": 4160, 
+            "height": 192
+        }, 
+        {
+            "frames": [
+                "RailingsRear"
+            ], 
+            "start": 4160, 
+            "spriteType": "static", 
+            "end": 4224, 
+            "height": 192
+        }, 
+        {
+            "frames": [
+                "RailingsRear"
+            ], 
+            "start": 4224, 
+            "spriteType": "static", 
+            "end": 4288, 
+            "height": 192
+        }, 
+        {
+            "frames": [
+                "RailingsRear"
+            ], 
+            "start": 4288, 
+            "spriteType": "static", 
+            "end": 4352, 
+            "height": 192
+        }, 
+        {
+            "frames": [
+                "RailingsRear"
+            ], 
+            "start": 4352, 
+            "spriteType": "static", 
+            "end": 4416, 
+            "height": 192
+        }, 
+        {
+            "frames": [
+                "RailingsRear"
+            ], 
+            "start": 4416, 
+            "spriteType": "static", 
+            "end": 4480, 
+            "height": 192
+        }, 
+        {
+            "frames": [
+                "RailingsRear"
+            ], 
+            "start": 4480, 
+            "spriteType": "static", 
+            "end": 4544, 
+            "height": 192
+        }, 
+        {
+            "frames": [
+                "RailingsRear"
+            ], 
+            "start": 4544, 
+            "spriteType": "static", 
+            "end": 4608, 
+            "height": 192
+        }, 
+        {
+            "frames": [
+                "RailingsRear"
+            ], 
+            "start": 4608, 
+            "spriteType": "static", 
+            "end": 4672, 
+            "height": 192
+        }, 
+        {
+            "frames": [
+                "RailingsRear"
+            ], 
+            "start": 4672, 
+            "spriteType": "static", 
+            "end": 4736, 
+            "height": 192
+        }, 
+        {
+            "frames": [
+                "RailingsRear"
+            ], 
+            "start": 4736, 
+            "spriteType": "static", 
+            "end": 4800, 
+            "height": 192
+        }, 
+        {
+            "frames": [
+                "RailingsRear"
+            ], 
+            "start": 4800, 
+            "spriteType": "static", 
+            "end": 4864, 
+            "height": 192
+        }, 
+        {
+            "frames": [
+                "RailingsRear"
+            ], 
+            "start": 4864, 
+            "spriteType": "static", 
+            "end": 4928, 
+            "height": 192
+        }, 
+        {
+            "frames": [
+                "RailingsRear"
+            ], 
+            "start": 4928, 
+            "spriteType": "static", 
+            "end": 4992, 
+            "height": 192
+        }, 
+        {
+            "frames": [
+                "RailingsRear"
+            ], 
+            "start": 4992, 
+            "spriteType": "static", 
+            "end": 5056, 
+            "height": 192
+        }, 
+        {
+            "frames": [
+                "RailingsRear"
+            ], 
+            "start": 5056, 
+            "spriteType": "static", 
+            "end": 5120, 
+            "height": 192
+        }, 
+        {
+            "frames": [
+                "Antenna.000", 
+                "Antenna.001", 
+                "Antenna.002", 
+                "Antenna.003"
+            ], 
+            "start": 5120, 
+            "spriteType": "animated", 
+            "end": 5184, 
+            "height": 192
+        }, 
+        {
+            "frames": [
+                "RailingsRear"
+            ], 
+            "start": 5184, 
+            "spriteType": "static", 
+            "end": 5248, 
+            "height": 192
+        }
+    ], 
     "dimensions": {
         "width": 12800, 
         "height": 576
+    }, 
+    "frontTiles": [
+        {
+            "frames": [
+                "Railings"
+            ], 
+            "start": 1408, 
+            "spriteType": "static", 
+            "end": 1472, 
+            "height": 320
+        }, 
+        {
+            "frames": [
+                "Railings"
+            ], 
+            "start": 1472, 
+            "spriteType": "static", 
+            "end": 1536, 
+            "height": 320
+        }, 
+        {
+            "frames": [
+                "Railings"
+            ], 
+            "start": 1536, 
+            "spriteType": "static", 
+            "end": 1600, 
+            "height": 320
+        }, 
+        {
+            "frames": [
+                "Railings"
+            ], 
+            "start": 1600, 
+            "spriteType": "static", 
+            "end": 1664, 
+            "height": 320
+        }, 
+        {
+            "frames": [
+                "Railings"
+            ], 
+            "start": 1664, 
+            "spriteType": "static", 
+            "end": 1728, 
+            "height": 320
+        }, 
+        {
+            "frames": [
+                "Railings"
+            ], 
+            "start": 1728, 
+            "spriteType": "static", 
+            "end": 1792, 
+            "height": 320
+        }, 
+        {
+            "frames": [
+                "Railings"
+            ], 
+            "start": 1792, 
+            "spriteType": "static", 
+            "end": 1856, 
+            "height": 320
+        }, 
+        {
+            "frames": [
+                "Railings"
+            ], 
+            "start": 1856, 
+            "spriteType": "static", 
+            "end": 1920, 
+            "height": 320
+        }, 
+        {
+            "frames": [
+                "Railings"
+            ], 
+            "start": 1920, 
+            "spriteType": "static", 
+            "end": 1984, 
+            "height": 320
+        }, 
+        {
+            "frames": [
+                "Railings"
+            ], 
+            "start": 2496, 
+            "spriteType": "static", 
+            "end": 2560, 
+            "height": 256
+        }, 
+        {
+            "frames": [
+                "Railings"
+            ], 
+            "start": 2560, 
+            "spriteType": "static", 
+            "end": 2624, 
+            "height": 320
+        }, 
+        {
+            "frames": [
+                "Railings"
+            ], 
+            "start": 2624, 
+            "spriteType": "static", 
+            "end": 2688, 
+            "height": 384
+        }, 
+        {
+            "frames": [
+                "Railings"
+            ], 
+            "start": 2688, 
+            "spriteType": "static", 
+            "end": 2752, 
+            "height": 448
+        }, 
+        {
+            "frames": [
+                "Railings"
+            ], 
+            "start": 2752, 
+            "spriteType": "static", 
+            "end": 2816, 
+            "height": 512
+        }, 
+        {
+            "frames": [
+                "Railings"
+            ], 
+            "start": 2816, 
+            "spriteType": "static", 
+            "end": 2880, 
+            "height": 512
+        }, 
+        {
+            "frames": [
+                "Railings"
+            ], 
+            "start": 2880, 
+            "spriteType": "static", 
+            "end": 2944, 
+            "height": 512
+        }, 
+        {
+            "frames": [
+                "Railings"
+            ], 
+            "start": 2944, 
+            "spriteType": "static", 
+            "end": 3008, 
+            "height": 512
+        }, 
+        {
+            "frames": [
+                "Railings"
+            ], 
+            "start": 3008, 
+            "spriteType": "static", 
+            "end": 3072, 
+            "height": 512
+        }, 
+        {
+            "frames": [
+                "Railings"
+            ], 
+            "start": 3072, 
+            "spriteType": "static", 
+            "end": 3136, 
+            "height": 512
+        }, 
+        {
+            "frames": [
+                "Railings"
+            ], 
+            "start": 3136, 
+            "spriteType": "static", 
+            "end": 3200, 
+            "height": 512
+        }, 
+        {
+            "frames": [
+                "Railings"
+            ], 
+            "start": 3200, 
+            "spriteType": "static", 
+            "end": 3264, 
+            "height": 512
+        }, 
+        {
+            "frames": [
+                "Railings"
+            ], 
+            "start": 3264, 
+            "spriteType": "static", 
+            "end": 3328, 
+            "height": 512
+        }, 
+        {
+            "frames": [
+                "Railings"
+            ], 
+            "start": 3328, 
+            "spriteType": "static", 
+            "end": 3392, 
+            "height": 512
+        }, 
+        {
+            "frames": [
+                "Railings"
+            ], 
+            "start": 3968, 
+            "spriteType": "static", 
+            "end": 4032, 
+            "height": 192
+        }, 
+        {
+            "frames": [
+                "Railings"
+            ], 
+            "start": 4032, 
+            "spriteType": "static", 
+            "end": 4096, 
+            "height": 192
+        }, 
+        {
+            "frames": [
+                "Railings"
+            ], 
+            "start": 4096, 
+            "spriteType": "static", 
+            "end": 4160, 
+            "height": 192
+        }, 
+        {
+            "frames": [
+                "Railings"
+            ], 
+            "start": 4160, 
+            "spriteType": "static", 
+            "end": 4224, 
+            "height": 192
+        }, 
+        {
+            "frames": [
+                "Railings"
+            ], 
+            "start": 4224, 
+            "spriteType": "static", 
+            "end": 4288, 
+            "height": 192
+        }, 
+        {
+            "frames": [
+                "Railings"
+            ], 
+            "start": 4288, 
+            "spriteType": "static", 
+            "end": 4352, 
+            "height": 192
+        }, 
+        {
+            "frames": [
+                "Railings"
+            ], 
+            "start": 4352, 
+            "spriteType": "static", 
+            "end": 4416, 
+            "height": 192
+        }, 
+        {
+            "frames": [
+                "Railings"
+            ], 
+            "start": 4416, 
+            "spriteType": "static", 
+            "end": 4480, 
+            "height": 192
+        }, 
+        {
+            "frames": [
+                "Railings"
+            ], 
+            "start": 4480, 
+            "spriteType": "static", 
+            "end": 4544, 
+            "height": 192
+        }, 
+        {
+            "frames": [
+                "Railings"
+            ], 
+            "start": 4544, 
+            "spriteType": "static", 
+            "end": 4608, 
+            "height": 192
+        }, 
+        {
+            "frames": [
+                "Railings"
+            ], 
+            "start": 4608, 
+            "spriteType": "static", 
+            "end": 4672, 
+            "height": 192
+        }, 
+        {
+            "frames": [
+                "Railings"
+            ], 
+            "start": 4672, 
+            "spriteType": "static", 
+            "end": 4736, 
+            "height": 192
+        }, 
+        {
+            "frames": [
+                "Railings"
+            ], 
+            "start": 4736, 
+            "spriteType": "static", 
+            "end": 4800, 
+            "height": 192
+        }, 
+        {
+            "frames": [
+                "Railings"
+            ], 
+            "start": 4800, 
+            "spriteType": "static", 
+            "end": 4864, 
+            "height": 192
+        }, 
+        {
+            "frames": [
+                "Railings"
+            ], 
+            "start": 4864, 
+            "spriteType": "static", 
+            "end": 4928, 
+            "height": 192
+        }, 
+        {
+            "frames": [
+                "Railings"
+            ], 
+            "start": 4928, 
+            "spriteType": "static", 
+            "end": 4992, 
+            "height": 192
+        }, 
+        {
+            "frames": [
+                "Railings"
+            ], 
+            "start": 4992, 
+            "spriteType": "static", 
+            "end": 5056, 
+            "height": 192
+        }, 
+        {
+            "frames": [
+                "Railings"
+            ], 
+            "start": 5056, 
+            "spriteType": "static", 
+            "end": 5120, 
+            "height": 192
+        }, 
+        {
+            "frames": [
+                "Railings"
+            ], 
+            "start": 5120, 
+            "spriteType": "static", 
+            "end": 5184, 
+            "height": 192
+        }, 
+        {
+            "frames": [
+                "Railings"
+            ], 
+            "start": 5184, 
+            "spriteType": "static", 
+            "end": 5248, 
+            "height": 192
+        }
+    ], 
+    "startingPosition": {
+        "y": 448, 
+        "x": 64
     }
 }

@@ -9,6 +9,7 @@ Background = green
 """
 
 import os
+import sys
 import json
 import argparse
 
@@ -16,55 +17,169 @@ from PIL import Image
 
 PLAYER = (255, 255, 255, 255)
 
-TILES = {
-    str((0, 0, 255, 255)): 0
+ENTITIES = {
+    str((0, 0, 0, 255)): 0
 }
 
-class Platform(object):
+TILES = {
+    str((0, 0, 255, 255)):   0,
+    str((0, 0, 127, 255)):   1,
+    str((255, 0, 0, 255)):   2,
+    str((0, 255, 255, 255)): 3,
+    str((255, 0, 255, 255)): 4,
+}
 
-    def __init__(self, coords, dimensions, tile_id):
+TILE_MAP = {
+    0: {'sprite': 'Platform-Metal', 'type': 'platform'},
+    1: {'sprite': 'Railings', 'type': 'front'},
+    2: {'sprite': 'Platform-Bridge', 'type': 'platform'},
+    3: {'sprite': 'RailingsRear', 'type': 'back'},
+    4: {'sprite': 'Antenna', 'type': 'back'},
+}
+
+SPRITE_DEFS = [
+    {
+        'id': 'Platform-Metal',
+        'type': 'static',
+        'frames': ['Platform-Metal']
+    },
+    {
+        'id': 'Platform-Bridge',
+        'type': 'static',
+        'frames': ['Platform-Bridge']
+    },
+    {
+        'id': 'Railings',
+        'type': 'static',
+        'frames': ['Railings']
+    },
+    {
+        'id': 'RailingsRear',
+        'type': 'static',
+        'frames': ['RailingsRear']
+    },
+    {
+        'id': 'Antenna',
+        'type': 'animated',
+        'frames': [
+            'Antenna.000',
+            'Antenna.001',
+            'Antenna.002',
+            'Antenna.003',
+        ]
+    },
+]
+
+
+class BaseTile(object):
+
+    def __init__(self, generator, coords, dimensions, sprite):
+        self.generator = generator
         self.coords = coords
         self.dimensions = dimensions
-        self.tile_id = tile_id
+        self.sprite = sprite
 
-class LevelGenerator(object):
+    def tile_descriptor(self):
+        x, y = self.coords
+        w, h = self.dimensions
+        sprite_def = self.generator.sprite_defs[self.sprite]
 
-    def __init__(self, name, image_path):
-        self.name = name
+        return {
+            'start': x,
+            'end': x + w,
+            'height': y,
+            'spriteType': sprite_def['type'],
+            'frames': sprite_def['frames']
+        }
+
+
+class Platform(BaseTile):
+
+    def __init__(self, generator, coords, dimensions, platform):
+        super(Platform, self).__init__(
+                generator, coords, dimensions, platform['sprite'])
+
+
+class Tile(BaseTile):
+
+    def __init__(self, generator, coords, dimensions, tile):
+        super(Tile, self).__init__(
+                generator, coords, dimensions, tile['sprite'])
+
+
+class LevelImage(object):
+
+    def __init__(self, image_path):
         self.image_path = image_path
         self.image_name = os.path.basename(image_path)
         self.image = Image.open(self.image_path)
         self.image_width, self.image_height = self.image.size
+
+    def world_coords(self, pos, tile_dimensions):
+        x, y = pos
+        w, h = tile_dimensions
+        return ((x * w), ((self.image_height - 1 - y) * h))
+
+
+class LevelGenerator(object):
+
+    def __init__(self, name, images):
+        self.name = name
+        self.images = images
+        self.level_images = []
+        self.sprite_defs = {}
+        for sprite_def in SPRITE_DEFS:
+            id = sprite_def['id']
+            self.sprite_defs[id] = sprite_def
+        for image_path in self.images:
+            self.level_images.append(LevelImage(image_path))
         self.background = (0, 255, 0, 255)
         self.tile_dimensions = (64, 64)
 
         self.platforms = []
+        self.front_tiles = []
+        self.back_tiles = []
+        self.entities = []
         self.player_start = None
+        self.level_width = 0
+        self.level_height = 0
 
-    def world_coords(self, pos):
-        x, y = pos
-        w, h = self.tile_dimensions
-        return ((x * w), ((self.image_height - 1 - y) * h))
+    def collect_tile(self, coords, tile_id):
+        tile = TILE_MAP[tile_id]
+        if tile['type'] == 'platform':
+            platform = Platform(self, coords, self.tile_dimensions, tile)
+            self.platforms.append(platform)
+        elif tile['type'] == 'front':
+            tile = Tile(self, coords, self.tile_dimensions, tile)
+            self.front_tiles.append(tile)
+        elif tile['type'] == 'back':
+            tile = Tile(self, coords, self.tile_dimensions, tile)
+            self.back_tiles.append(tile)
 
-    def collect_platform(self, coords, tile_id):
-        self.platforms.append(Platform(coords, self.tile_dimensions, tile_id))
-
-    def read_level_image(self):
-        for x in xrange(self.image_width):
-            for y in xrange(self.image_height):
+    def read_level_image(self, level_image):
+        if level_image.image_width > self.level_width:
+            self.level_width = level_image.image_width
+        if level_image.image_height > self.level_height:
+            self.level_height = level_image.image_height
+        for x in xrange(level_image.image_width):
+            for y in xrange(level_image.image_height):
                 coords = (x, y)
-                pixel = self.image.getpixel(coords)
+                pixel = level_image.image.getpixel(coords)
                 if str(pixel) in TILES:
                     tile_id = TILES[str(pixel)]
-                    world_coords = self.world_coords(coords)
-                    self.collect_platform(world_coords, tile_id)
+                    world_coords = level_image.world_coords(
+                            coords, self.tile_dimensions)
+                    self.collect_tile(world_coords, tile_id)
                 elif pixel == PLAYER:
-                    self.player_start = self.world_coords(coords)
+                    self.player_start = level_image.world_coords(
+                            coords, self.tile_dimensions)
+                elif str(pixel) in ENTITIES:
+                    pass
 
     def write_dimensions(self, level):
         w, h = self.tile_dimensions
-        width = self.image_width * w
-        height = self.image_height * h
+        width = self.level_width * w
+        height = self.level_height * h
         level['dimensions'] = {
             'width': width,
             'height': height
@@ -73,14 +188,17 @@ class LevelGenerator(object):
     def write_platforms(self, level):
         level['platforms'] = []
         for platform in self.platforms:
-            x, y = platform.coords
-            w, h = platform.dimensions
+            level['platforms'].append(platform.tile_descriptor())
 
-            level['platforms'].append({
-                'start': x,
-                'end': x + w,
-                'height': y
-            })
+    def write_back_tiles(self, level):
+        level['frontTiles'] = []
+        for tile in self.front_tiles:
+            level['frontTiles'].append(tile.tile_descriptor())
+
+    def write_front_tiles(self, level):
+        level['backTiles'] = []
+        for tile in self.back_tiles:
+            level['backTiles'].append(tile.tile_descriptor())
 
     def write_player_start(self, level):
         if not self.player_start:
@@ -96,11 +214,14 @@ class LevelGenerator(object):
         level['name'] = self.name
         self.write_dimensions(level)
         self.write_platforms(level)
+        self.write_front_tiles(level)
+        self.write_back_tiles(level)
         self.write_player_start(level)
         print(json.dumps(level, indent=4))
 
     def gen(self):
-        self.read_level_image()
+        for level_image in self.level_images:
+            self.read_level_image(level_image)
         self.write_level()
 
 
@@ -108,7 +229,7 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Create level from image')
     parser.add_argument('--level-name', dest='level_name',
                         help='ID/Name of the level')
-    parser.add_argument('image', help='Path to the image')
+    parser.add_argument('images', help='Path to the image', nargs='+')
     args = parser.parse_args()
-    level = LevelGenerator(args.level_name, args.image)
+    level = LevelGenerator(args.level_name, args.images)
     level.gen()

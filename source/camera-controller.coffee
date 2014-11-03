@@ -12,8 +12,10 @@ class CameraController
             right: Math.round @width * .75
 
     initialize: (@levelDimensions) ->
+        @initializeBackTiles()
         @initializePlatforms()
         @initializePlayer()
+        @initializeFrontTiles()
 
     update: ->
         @checkPlayerPosition()
@@ -33,8 +35,16 @@ class CameraController
     addBullet: (bullet) ->
         @stage.addChild bullet.sprite
 
-    initializePlatforms: ->
+    initializeFrontTiles: ->
+        for tile in @level.frontTiles
+            @stage.addChild tile.sprite
+
+    initializeBackTiles: ->
         @stage.addChild @level.background
+        for tile in @level.backTiles
+            @stage.addChild tile.sprite
+
+    initializePlatforms: ->
         for platform in @level.platforms
             @stage.addChild platform.sprite
 
@@ -57,12 +67,19 @@ class CameraController
         @player.sprite.position.x = Math.round x
         @player.sprite.position.y = Math.round y
 
+    updateTile: (tile) ->
+        spriteCoordinates = [tile.start, tile.height + 64]
+        [x, y] = @translateCoordinates spriteCoordinates
+        tile.sprite.x = Math.round x
+        tile.sprite.y = Math.round y
+
     updatePlatforms: ->
         for platform in @level.platforms
-            platformSpriteCoordinates = [platform.start, platform.height + 64]
-            [x, y] = @translateCoordinates platformSpriteCoordinates
-            platform.sprite.x = Math.round x
-            platform.sprite.y = Math.round y
+            @updateTile platform
+        for tile in @level.frontTiles
+            @updateTile tile
+        for tile in @level.backTiles
+            @updateTile tile
 
     updateBullets: ->
         for bullet in @level.bullets.friendly

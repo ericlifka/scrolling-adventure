@@ -4,13 +4,18 @@ class LevelController
     camera: null
     player: null
     loader: null
-    entities: []
+    entities: null
 
     platforms: null
+    frontTiles: null
+    backTiles: null
     bullets: null
 
     constructor: ->
         @platforms = []
+        @frontTiles = []
+        @backTiles = []
+        @entities = []
         @bullets = {
             friendly: []
             enemy: []
@@ -18,7 +23,7 @@ class LevelController
 
     load: (levelIdentifier) ->
         @description = @loader.getLevelDescription levelIdentifier
-        @loadPlatforms()
+        @loadTiles()
         @loadBackground()
         # Loads assets for the level
         @camera.initialize @description.dimensions
@@ -95,17 +100,30 @@ class LevelController
 
         [null, null, false]
 
-    loadPlatforms: ->
+    loadTile: (tile) ->
+        if tile.spriteType == 'static'
+            sprite = PIXI.Sprite.fromFrame tile.frames[0]
+        else if tile.spriteType == 'animated'
+            sprites = []
+            for frame in tile.frames
+                sprites.push (PIXI.Sprite.fromFrame frame).texture
+            sprite = new PIXI.MovieClip sprites
+            sprite.gotoAndPlay 0
+            sprite.animationSpeed = 0.25
+        return {
+            height: tile.height
+            start: tile.start
+            length: length
+            sprite: sprite
+        }
+
+    loadTiles: ->
         for platform in @description.platforms
-            length = platform.end - platform.start
-            sprite = new PIXI.Sprite.fromImage 'assets/Platform-Metal.png'
-            sprite.width = length
-            @platforms.push {
-                height: platform.height
-                start: platform.start
-                length: length
-                sprite: sprite
-            }
+            @platforms.push(@loadTile platform)
+        for tile in @description.frontTiles
+             @frontTiles.push(@loadTile tile)
+        for tile in @description.backTiles
+             @backTiles.push(@loadTile tile)
 
     spawnFriendlyBullet: (position, velocity) ->
         bullet = {

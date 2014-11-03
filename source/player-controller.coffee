@@ -140,7 +140,7 @@ class PlayerController
     setRunning: ->
         if not @running
             @sprite.gotoAndPlay 0
-            @sprite.animationSpeed = 1
+            @sprite.animationSpeed = 0.5
             @running = true
 
     setStopped: ->
