@@ -15,7 +15,7 @@ $(TARGET): out/scrolling.js out/assets out/lib out/levels $(STATIC)
 
 out/scrolling.js: $(SOURCES)
 	mkdir -p out
-	cat $(SOURCES) | coffee --compile --stdio > out/scrolling.js
+	cat $(SOURCES) | $(COFFEE) --compile --stdio > $@
 
 out/assets: $(ASSETS)
 	mkdir -p out
