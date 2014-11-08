@@ -31,7 +31,10 @@ out/levels: $(LEVELS)
 	mkdir -p out
 	cp -r levels out/
 	touch $@
-	
+
 .PHONY: clean
 clean:
 	rm -rf out/
+
+run:
+	node-webkit out/
