@@ -39,6 +39,8 @@ window.GameController = class GameController
         @level.loader = @loader
 
     initialize: (callback) ->
+        createjs.Sound.registerSound 'assets/jump.wav', 'jump'
+        createjs.Sound.registerSound 'assets/pew.wav', 'pew'
         loader = new PIXI.AssetLoader @assetPaths
         loader.onComplete = =>
             @setupAssets()

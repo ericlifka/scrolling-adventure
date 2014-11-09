@@ -159,6 +159,8 @@ class PlayerController
         @flySprite.visible = false
 
     setJumping: ->
+        # soundInstance = createjs.Sound.play 'jump'
+        # soundInstance.volume = 0.5
         @runSprite.visible = false
         @flySprite.visible = true
         if not @jumping
@@ -219,6 +221,8 @@ class PlayerController
             now = new Date()
             if now - @lastFire > @fireRate
                 @lastFire = now
+                soundInstance = createjs.Sound.play 'pew'
+                soundInstance.setVolume 0.2
                 @level.spawnFriendlyBullet @bulletPosition(), @bulletVelocity()
 
     bulletPosition: ->
