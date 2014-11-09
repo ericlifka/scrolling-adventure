@@ -12,6 +12,9 @@ class InputController
         document.addEventListener 'keyup', (event) =>
             @keyCache[ String.fromCharCode(event.keyCode) ] = false
 
+    clearCache: ->
+        @keyCache = { }
+
     getFrameState: ->
         left: @keyCache['A']
         right: @keyCache['D']
@@ -19,3 +22,4 @@ class InputController
         down: @keyCache['S']
         jump: @keyCache[' ']
         fire: @keyCache['J']
+        pause: @keyCache['P']

@@ -51,7 +51,6 @@ class LevelController
         @updateBullets timeRatio
 
     testPlatformCollision: (x, y, xStep, yStep, hitBox) ->
-        collX = null
         collY = null
         {width, height} = hitBox
         x2 = x + width
@@ -66,7 +65,7 @@ class LevelController
                     collY = top
                     yStep = top # new yStep based on collision
                     break
-        return [collX, collY]
+        return collY
 
     testPointInRect: (x, y, x1, y1, x2, y2) ->
         return x >= x1 and x <= x2 and y >= y1 and y <= y2
@@ -137,16 +136,18 @@ class LevelController
         x2Step = xStep + width
 
         [collX, collY] = @testBlockCollision(x, y, xStep, yStep, hitBox)
-        if not (collX or collY)
-            [collX, collY] = @testPlatformCollision(x, y, xStep, yStep, hitBox)
 
-        if collX or collY
+        if not collY
+            collY = @testPlatformCollision(x, y, xStep, yStep, hitBox)
+
+        if (not collX) and (xStep < 0.0)
+            # simple left side test... may go away
+            collX = 0.0
+
+        if (collX != null) or (collY != null)
             return [collX, collY, false]
 
-        if y >= 0.0 and yStep < 0.0
-            return [null, 0, false]
-
-        if yStep < 10.0
+        if yStep < 0.0
             return [null, null, true]
 
         [null, null, false]

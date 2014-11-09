@@ -204,13 +204,13 @@ class PlayerController
         if died
             @level.reset()
 
-        if collY
+        if collY != null # 0 is valid
             @doubleJump = false
             @setGrounded()
             @velocity.y = 0
             @position.y = collY
 
-        if collX
+        if collX != null # 0 is valid
             @velocity.x = 0
             @position.x = collX
 
