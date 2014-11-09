@@ -59,10 +59,10 @@ class PlayerController
             PIXI.Sprite.fromFrame('reddude.006').texture
             PIXI.Sprite.fromFrame('reddude.007').texture
         ]
-        @flySprite.visible = false
         @sprite = new PIXI.DisplayObjectContainer
         @sprite.addChild(@runSprite)
         @sprite.addChild(@flySprite)
+        @setStopped()
 
     initialize: ->
         @sprite.scale.x = @spriteScale

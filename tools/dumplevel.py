@@ -30,7 +30,7 @@ TILES = {
 }
 
 TILE_MAP = {
-    0: {'sprite': 'Platform-Metal', 'type': 'platform'},
+    0: {'sprite': 'Platform-Metal', 'type': 'block'},
     1: {'sprite': 'Railings', 'type': 'front'},
     2: {'sprite': 'Platform-Bridge', 'type': 'platform'},
     3: {'sprite': 'RailingsRear', 'type': 'back'},
@@ -92,19 +92,24 @@ class BaseTile(object):
             'frames': sprite_def['frames']
         }
 
+class Block(BaseTile):
+
+    def __init__(self, generator, coords, dimensions, tiledef):
+        super(Block, self).__init__(
+                generator, coords, dimensions, tiledef['sprite'])
 
 class Platform(BaseTile):
 
-    def __init__(self, generator, coords, dimensions, platform):
+    def __init__(self, generator, coords, dimensions, tiledef):
         super(Platform, self).__init__(
-                generator, coords, dimensions, platform['sprite'])
+                generator, coords, dimensions, tiledef['sprite'])
 
 
 class Tile(BaseTile):
 
-    def __init__(self, generator, coords, dimensions, tile):
+    def __init__(self, generator, coords, dimensions, tiledef):
         super(Tile, self).__init__(
-                generator, coords, dimensions, tile['sprite'])
+                generator, coords, dimensions, tiledef['sprite'])
 
 
 class LevelImage(object):
@@ -136,6 +141,7 @@ class LevelGenerator(object):
         self.background = (0, 255, 0, 255)
         self.tile_dimensions = (64, 64)
 
+        self.blocks = []
         self.platforms = []
         self.front_tiles = []
         self.back_tiles = []
@@ -146,6 +152,9 @@ class LevelGenerator(object):
 
     def collect_tile(self, coords, tile_id):
         tile = TILE_MAP[tile_id]
+        if tile['type'] == 'block':
+            block = Block(self, coords, self.tile_dimensions, tile)
+            self.blocks.append(block)
         if tile['type'] == 'platform':
             platform = Platform(self, coords, self.tile_dimensions, tile)
             self.platforms.append(platform)
@@ -185,6 +194,11 @@ class LevelGenerator(object):
             'height': height
         }
 
+    def write_blocks(self, level):
+        level['blocks'] = []
+        for block in self.blocks:
+            level['blocks'].append(block.tile_descriptor())
+
     def write_platforms(self, level):
         level['platforms'] = []
         for platform in self.platforms:
@@ -213,6 +227,7 @@ class LevelGenerator(object):
         level= {}
         level['name'] = self.name
         self.write_dimensions(level)
+        self.write_blocks(level)
         self.write_platforms(level)
         self.write_front_tiles(level)
         self.write_back_tiles(level)
@@ -227,7 +242,7 @@ class LevelGenerator(object):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Create level from image')
-    parser.add_argument('--level-name', dest='level_name',
+    parser.add_argument('--level-name', dest='level_name', required=True,
                         help='ID/Name of the level')
     parser.add_argument('images', help='Path to the image', nargs='+')
     args = parser.parse_args()

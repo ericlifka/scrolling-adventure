@@ -6,12 +6,14 @@ class LevelController
     loader: null
     entities: null
 
+    blocks: null
     platforms: null
     frontTiles: null
     backTiles: null
     bullets: null
 
     constructor: ->
+        @blocks = []
         @platforms = []
         @frontTiles = []
         @backTiles = []
@@ -48,18 +50,7 @@ class LevelController
             entity.update timeRatio
         @updateBullets timeRatio
 
-    testCollision: (x, y, xStep, yStep, hitBox) ->
-        # This is all very cheat-y but it seems to work
-        #
-        # x, y -> The bottom left coordinate of the box
-        # xStep, yStep -> The new bottom left coordinate being tested
-        # hitBox 
-        # 
-        # Returns the tuple [collision-x, collision-y, died]
-        # where collision-x/y are the bottom left coordinates
-        # FIXME: returning flag if player death was detected
-        #        need to think about how player state can
-        #        be affected by the level
+    testPlatformCollision: (x, y, xStep, yStep, hitBox) ->
         collX = null
         collY = null
         {width, height} = hitBox
@@ -75,19 +66,79 @@ class LevelController
                     collY = top
                     yStep = top # new yStep based on collision
                     break
+        return [collX, collY]
 
-        for {start, end, height} in @description.platforms
+    testPointInRect: (x, y, x1, y1, x2, y2) ->
+        return x >= x1 and x <= x2 and y >= y1 and y <= y2
+
+    testStepIntersects: (v, vStep, x) ->
+        return (v <= x and vStep >= x) or (v >= x and vStep <= x)
+
+    testBlockCollision: (x, y, xStep, yStep, hitBox) ->
+        collX = null
+        collY = null
+        {width, height} = hitBox
+        y2 = y + height
+        y2Step = yStep + height
+        x2 = x + width
+        x2Step = xStep + width
+        for {start, end, height} in @description.blocks
             top = height + 64
-            if yStep >= height and yStep < top
-                # Bottom edge is in the height of the tile
-                if (x2Step > start and x2Step <= end)
-                    # right edge intersects tile
-                    collX = start - width
-                    break
-                else if (xStep > start and xStep <= end)
-                    # left edge intersects tile
+            # Test the intersection of each edge of the 
+            # box.  Since we are doing time-influenced
+            # steps we need to find which edge is the 
+            # collisions side
+
+            # right-bottom (x2, y)
+            if @testPointInRect(x2Step, yStep, start, height, end, top)
+                if @testStepIntersects y, yStep, top
+                    collY = top
+                else if @testStepIntersects x2, x2Step, start
+                    collX = start - hitBox.width
+            # right-top (x2, y2)
+            else if @testPointInRect(x2Step, y2Step, start, height, end, top)
+                if @testStepIntersects y2, y2Step, height
+                    collY = height - hitBox.height
+                else if @testStepIntersects x2, x2Step, start
+                    collX = start - hitBox.width
+            # left-bottom (x, y)
+            else if @testPointInRect(xStep, yStep, start, height, end, top)
+                if @testStepIntersects y, yStep, top
+                    collY = top
+                else if @testStepIntersects x, xStep, end
                     collX = end
-                    break
+            # left-top (x, y2)
+            else if @testPointInRect(xStep, y2Step, start, height, end, top)
+                if @testStepIntersects y2, y2Step, height
+                    collY = height - hitBox.height
+                else if @testStepIntersects x, xStep, end
+                    collX = end
+
+            if collX and collY
+                break
+        return [collX, collY]
+
+    testCollision: (x, y, xStep, yStep, hitBox) ->
+        # This is all very cheat-y but it seems to work
+        #
+        # x, y -> The bottom left coordinate of the box
+        # xStep, yStep -> The new bottom left coordinate being tested
+        # hitBox -> width and height of the entity tested
+        # 
+        # Returns the tuple [collision-x, collision-y, died]
+        # where collision-x/y are the bottom left coordinates
+        # FIXME: returning flag if player death was detected
+        #        need to think about how player state can
+        #        be affected by the level
+        collX = null
+        collY = null
+        {width, height} = hitBox
+        x2 = x + width
+        x2Step = xStep + width
+
+        [collX, collY] = @testBlockCollision(x, y, xStep, yStep, hitBox)
+        if not (collX or collY)
+            [collX, collY] = @testPlatformCollision(x, y, xStep, yStep, hitBox)
 
         if collX or collY
             return [collX, collY, false]
@@ -118,12 +169,14 @@ class LevelController
         }
 
     loadTiles: ->
+        for block in @description.blocks
+            @blocks.push(@loadTile block)
         for platform in @description.platforms
             @platforms.push(@loadTile platform)
         for tile in @description.frontTiles
-             @frontTiles.push(@loadTile tile)
+            @frontTiles.push(@loadTile tile)
         for tile in @description.backTiles
-             @backTiles.push(@loadTile tile)
+            @backTiles.push(@loadTile tile)
 
     spawnFriendlyBullet: (position, velocity) ->
         bullet = {

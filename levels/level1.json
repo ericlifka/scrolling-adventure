@@ -1,6 +1,5 @@
 {
-    "name": "level1", 
-    "platforms": [
+    "blocks": [
         {
             "frames": [
                 "Platform-Metal"
@@ -36,6 +35,15 @@
             "spriteType": "static", 
             "end": 256, 
             "height": 64
+        }, 
+        {
+            "frames": [
+                "Platform-Metal"
+            ], 
+            "start": 256, 
+            "spriteType": "static", 
+            "end": 320, 
+            "height": 128
         }, 
         {
             "frames": [
@@ -174,30 +182,12 @@
         }, 
         {
             "frames": [
-                "Platform-Bridge"
-            ], 
-            "start": 1472, 
-            "spriteType": "static", 
-            "end": 1536, 
-            "height": 256
-        }, 
-        {
-            "frames": [
                 "Platform-Metal"
             ], 
             "start": 1472, 
             "spriteType": "static", 
             "end": 1536, 
             "height": 64
-        }, 
-        {
-            "frames": [
-                "Platform-Bridge"
-            ], 
-            "start": 1536, 
-            "spriteType": "static", 
-            "end": 1600, 
-            "height": 256
         }, 
         {
             "frames": [
@@ -210,15 +200,6 @@
         }, 
         {
             "frames": [
-                "Platform-Bridge"
-            ], 
-            "start": 1600, 
-            "spriteType": "static", 
-            "end": 1664, 
-            "height": 256
-        }, 
-        {
-            "frames": [
                 "Platform-Metal"
             ], 
             "start": 1600, 
@@ -228,48 +209,12 @@
         }, 
         {
             "frames": [
-                "Platform-Bridge"
-            ], 
-            "start": 1664, 
-            "spriteType": "static", 
-            "end": 1728, 
-            "height": 256
-        }, 
-        {
-            "frames": [
                 "Platform-Metal"
             ], 
             "start": 1664, 
             "spriteType": "static", 
             "end": 1728, 
             "height": 64
-        }, 
-        {
-            "frames": [
-                "Platform-Bridge"
-            ], 
-            "start": 1728, 
-            "spriteType": "static", 
-            "end": 1792, 
-            "height": 256
-        }, 
-        {
-            "frames": [
-                "Platform-Bridge"
-            ], 
-            "start": 1792, 
-            "spriteType": "static", 
-            "end": 1856, 
-            "height": 256
-        }, 
-        {
-            "frames": [
-                "Platform-Bridge"
-            ], 
-            "start": 1856, 
-            "spriteType": "static", 
-            "end": 1920, 
-            "height": 256
         }, 
         {
             "frames": [
@@ -354,30 +299,12 @@
         }, 
         {
             "frames": [
-                "Platform-Bridge"
-            ], 
-            "start": 2816, 
-            "spriteType": "static", 
-            "end": 2880, 
-            "height": 448
-        }, 
-        {
-            "frames": [
                 "Platform-Metal"
             ], 
             "start": 2816, 
             "spriteType": "static", 
             "end": 2880, 
             "height": 64
-        }, 
-        {
-            "frames": [
-                "Platform-Bridge"
-            ], 
-            "start": 2880, 
-            "spriteType": "static", 
-            "end": 2944, 
-            "height": 448
         }, 
         {
             "frames": [
@@ -390,57 +317,12 @@
         }, 
         {
             "frames": [
-                "Platform-Bridge"
-            ], 
-            "start": 2944, 
-            "spriteType": "static", 
-            "end": 3008, 
-            "height": 448
-        }, 
-        {
-            "frames": [
                 "Platform-Metal"
             ], 
             "start": 2944, 
             "spriteType": "static", 
             "end": 3008, 
             "height": 64
-        }, 
-        {
-            "frames": [
-                "Platform-Bridge"
-            ], 
-            "start": 3008, 
-            "spriteType": "static", 
-            "end": 3072, 
-            "height": 448
-        }, 
-        {
-            "frames": [
-                "Platform-Bridge"
-            ], 
-            "start": 3072, 
-            "spriteType": "static", 
-            "end": 3136, 
-            "height": 448
-        }, 
-        {
-            "frames": [
-                "Platform-Bridge"
-            ], 
-            "start": 3136, 
-            "spriteType": "static", 
-            "end": 3200, 
-            "height": 448
-        }, 
-        {
-            "frames": [
-                "Platform-Bridge"
-            ], 
-            "start": 3200, 
-            "spriteType": "static", 
-            "end": 3264, 
-            "height": 448
         }, 
         {
             "frames": [
@@ -450,15 +332,6 @@
             "spriteType": "static", 
             "end": 3264, 
             "height": 256
-        }, 
-        {
-            "frames": [
-                "Platform-Bridge"
-            ], 
-            "start": 3264, 
-            "spriteType": "static", 
-            "end": 3328, 
-            "height": 448
         }, 
         {
             "frames": [
@@ -522,6 +395,180 @@
             "spriteType": "static", 
             "end": 4096, 
             "height": 128
+        }, 
+        {
+            "frames": [
+                "Platform-Metal"
+            ], 
+            "start": 4736, 
+            "spriteType": "static", 
+            "end": 4800, 
+            "height": 128
+        }, 
+        {
+            "frames": [
+                "Platform-Metal"
+            ], 
+            "start": 4800, 
+            "spriteType": "static", 
+            "end": 4864, 
+            "height": 128
+        }, 
+        {
+            "frames": [
+                "Platform-Metal"
+            ], 
+            "start": 5120, 
+            "spriteType": "static", 
+            "end": 5184, 
+            "height": 128
+        }, 
+        {
+            "frames": [
+                "Platform-Metal"
+            ], 
+            "start": 5184, 
+            "spriteType": "static", 
+            "end": 5248, 
+            "height": 128
+        }
+    ], 
+    "name": "level1", 
+    "platforms": [
+        {
+            "frames": [
+                "Platform-Bridge"
+            ], 
+            "start": 1472, 
+            "spriteType": "static", 
+            "end": 1536, 
+            "height": 256
+        }, 
+        {
+            "frames": [
+                "Platform-Bridge"
+            ], 
+            "start": 1536, 
+            "spriteType": "static", 
+            "end": 1600, 
+            "height": 256
+        }, 
+        {
+            "frames": [
+                "Platform-Bridge"
+            ], 
+            "start": 1600, 
+            "spriteType": "static", 
+            "end": 1664, 
+            "height": 256
+        }, 
+        {
+            "frames": [
+                "Platform-Bridge"
+            ], 
+            "start": 1664, 
+            "spriteType": "static", 
+            "end": 1728, 
+            "height": 256
+        }, 
+        {
+            "frames": [
+                "Platform-Bridge"
+            ], 
+            "start": 1728, 
+            "spriteType": "static", 
+            "end": 1792, 
+            "height": 256
+        }, 
+        {
+            "frames": [
+                "Platform-Bridge"
+            ], 
+            "start": 1792, 
+            "spriteType": "static", 
+            "end": 1856, 
+            "height": 256
+        }, 
+        {
+            "frames": [
+                "Platform-Bridge"
+            ], 
+            "start": 1856, 
+            "spriteType": "static", 
+            "end": 1920, 
+            "height": 256
+        }, 
+        {
+            "frames": [
+                "Platform-Bridge"
+            ], 
+            "start": 2816, 
+            "spriteType": "static", 
+            "end": 2880, 
+            "height": 448
+        }, 
+        {
+            "frames": [
+                "Platform-Bridge"
+            ], 
+            "start": 2880, 
+            "spriteType": "static", 
+            "end": 2944, 
+            "height": 448
+        }, 
+        {
+            "frames": [
+                "Platform-Bridge"
+            ], 
+            "start": 2944, 
+            "spriteType": "static", 
+            "end": 3008, 
+            "height": 448
+        }, 
+        {
+            "frames": [
+                "Platform-Bridge"
+            ], 
+            "start": 3008, 
+            "spriteType": "static", 
+            "end": 3072, 
+            "height": 448
+        }, 
+        {
+            "frames": [
+                "Platform-Bridge"
+            ], 
+            "start": 3072, 
+            "spriteType": "static", 
+            "end": 3136, 
+            "height": 448
+        }, 
+        {
+            "frames": [
+                "Platform-Bridge"
+            ], 
+            "start": 3136, 
+            "spriteType": "static", 
+            "end": 3200, 
+            "height": 448
+        }, 
+        {
+            "frames": [
+                "Platform-Bridge"
+            ], 
+            "start": 3200, 
+            "spriteType": "static", 
+            "end": 3264, 
+            "height": 448
+        }, 
+        {
+            "frames": [
+                "Platform-Bridge"
+            ], 
+            "start": 3264, 
+            "spriteType": "static", 
+            "end": 3328, 
+            "height": 448
         }, 
         {
             "frames": [
@@ -615,24 +662,6 @@
         }, 
         {
             "frames": [
-                "Platform-Metal"
-            ], 
-            "start": 4736, 
-            "spriteType": "static", 
-            "end": 4800, 
-            "height": 128
-        }, 
-        {
-            "frames": [
-                "Platform-Metal"
-            ], 
-            "start": 4800, 
-            "spriteType": "static", 
-            "end": 4864, 
-            "height": 128
-        }, 
-        {
-            "frames": [
                 "Platform-Bridge"
             ], 
             "start": 4864, 
@@ -665,24 +694,6 @@
             "start": 5056, 
             "spriteType": "static", 
             "end": 5120, 
-            "height": 128
-        }, 
-        {
-            "frames": [
-                "Platform-Metal"
-            ], 
-            "start": 5120, 
-            "spriteType": "static", 
-            "end": 5184, 
-            "height": 128
-        }, 
-        {
-            "frames": [
-                "Platform-Metal"
-            ], 
-            "start": 5184, 
-            "spriteType": "static", 
-            "end": 5248, 
             "height": 128
         }
     ], 
@@ -1081,9 +1092,9 @@
             "height": 192
         }
     ], 
-    "dimensions": {
-        "width": 12800, 
-        "height": 576
+    "startingPosition": {
+        "y": 448, 
+        "x": 64
     }, 
     "frontTiles": [
         {
@@ -1474,8 +1485,8 @@
             "height": 192
         }
     ], 
-    "startingPosition": {
-        "y": 448, 
-        "x": 64
+    "dimensions": {
+        "width": 12800, 
+        "height": 576
     }
 }

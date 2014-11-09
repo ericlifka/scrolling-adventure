@@ -13,6 +13,7 @@ class CameraController
 
     initialize: (@levelDimensions) ->
         @initializeBackTiles()
+        @initializeBlocks()
         @initializePlatforms()
         @initializePlayer()
         @initializeFrontTiles()
@@ -44,6 +45,10 @@ class CameraController
         for tile in @level.backTiles
             @stage.addChild tile.sprite
 
+    initializeBlocks: ->
+        for block in @level.blocks
+            @stage.addChild block.sprite
+
     initializePlatforms: ->
         for platform in @level.platforms
             @stage.addChild platform.sprite
@@ -74,6 +79,8 @@ class CameraController
         tile.sprite.y = Math.round y
 
     updatePlatforms: ->
+        for block in @level.blocks
+            @updateTile block
         for platform in @level.platforms
             @updateTile platform
         for tile in @level.frontTiles
