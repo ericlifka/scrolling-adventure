@@ -1,7 +1,7 @@
 window.GameController = class GameController
     assetPaths: [
         'assets/wizard_girl_boots.png'
-        'assets/RedDudeBounce2x.json'
+        'assets/JetPackDude.json'
         'assets/RedDudeTileSet2x.json'
         'assets/platform_tile.png'
         'assets/Background.png'

@@ -1,0 +1,172 @@
+{
+    "frames": {
+        "reddude.000": {
+            "frame": {
+                "h": 34, 
+                "w": 24, 
+                "x": 0, 
+                "y": 0
+            }, 
+            "rotated": false, 
+            "sourceSize": {
+                "h": 34, 
+                "w": 24
+            }, 
+            "spriteSourceSize": {
+                "h": 34, 
+                "w": 24, 
+                "x": 0, 
+                "y": 0
+            }, 
+            "trimmed": true
+        }, 
+        "reddude.001": {
+            "frame": {
+                "h": 34, 
+                "w": 24, 
+                "x": 24, 
+                "y": 0
+            }, 
+            "rotated": false, 
+            "sourceSize": {
+                "h": 34, 
+                "w": 24
+            }, 
+            "spriteSourceSize": {
+                "h": 34, 
+                "w": 24, 
+                "x": 0, 
+                "y": 0
+            }, 
+            "trimmed": true
+        }, 
+        "reddude.002": {
+            "frame": {
+                "h": 34, 
+                "w": 24, 
+                "x": 48, 
+                "y": 0
+            }, 
+            "rotated": false, 
+            "sourceSize": {
+                "h": 34, 
+                "w": 24
+            }, 
+            "spriteSourceSize": {
+                "h": 34, 
+                "w": 24, 
+                "x": 0, 
+                "y": 0
+            }, 
+            "trimmed": true
+        }, 
+        "reddude.003": {
+            "frame": {
+                "h": 34, 
+                "w": 24, 
+                "x": 72, 
+                "y": 0
+            }, 
+            "rotated": false, 
+            "sourceSize": {
+                "h": 34, 
+                "w": 24
+            }, 
+            "spriteSourceSize": {
+                "h": 34, 
+                "w": 24, 
+                "x": 0, 
+                "y": 0
+            }, 
+            "trimmed": true
+        }, 
+        "reddude.004": {
+            "frame": {
+                "h": 34, 
+                "w": 24, 
+                "x": 96, 
+                "y": 0
+            }, 
+            "rotated": false, 
+            "sourceSize": {
+                "h": 34, 
+                "w": 24
+            }, 
+            "spriteSourceSize": {
+                "h": 34, 
+                "w": 24, 
+                "x": 0, 
+                "y": 0
+            }, 
+            "trimmed": true
+        }, 
+        "reddude.005": {
+            "frame": {
+                "h": 34, 
+                "w": 24, 
+                "x": 120, 
+                "y": 0
+            }, 
+            "rotated": false, 
+            "sourceSize": {
+                "h": 34, 
+                "w": 24
+            }, 
+            "spriteSourceSize": {
+                "h": 34, 
+                "w": 24, 
+                "x": 0, 
+                "y": 0
+            }, 
+            "trimmed": true
+        }, 
+        "reddude.006": {
+            "frame": {
+                "h": 34, 
+                "w": 24, 
+                "x": 144, 
+                "y": 0
+            }, 
+            "rotated": false, 
+            "sourceSize": {
+                "h": 34, 
+                "w": 24
+            }, 
+            "spriteSourceSize": {
+                "h": 34, 
+                "w": 24, 
+                "x": 0, 
+                "y": 0
+            }, 
+            "trimmed": true
+        }, 
+        "reddude.007": {
+            "frame": {
+                "h": 34, 
+                "w": 24, 
+                "x": 168, 
+                "y": 0
+            }, 
+            "rotated": false, 
+            "sourceSize": {
+                "h": 34, 
+                "w": 24
+            }, 
+            "spriteSourceSize": {
+                "h": 34, 
+                "w": 24, 
+                "x": 0, 
+                "y": 0
+            }, 
+            "trimmed": true
+        }
+    }, 
+    "meta": {
+        "image": "JepPackDude.png", 
+        "scale": 1, 
+        "size": {
+            "h": 34, 
+            "w": 192
+        }
+    }
+}

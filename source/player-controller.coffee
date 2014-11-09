@@ -47,7 +47,7 @@ class PlayerController
         @lastFire = new Date()
 
     setupSprites: ->
-        @sprite = new PIXI.MovieClip [
+        @runSprite = new PIXI.MovieClip [
             PIXI.Sprite.fromFrame('reddude.000').texture
             PIXI.Sprite.fromFrame('reddude.001').texture
             PIXI.Sprite.fromFrame('reddude.002').texture
@@ -55,6 +55,14 @@ class PlayerController
             PIXI.Sprite.fromFrame('reddude.004').texture
             PIXI.Sprite.fromFrame('reddude.005').texture
         ]
+        @flySprite = new PIXI.MovieClip [
+            PIXI.Sprite.fromFrame('reddude.006').texture
+            PIXI.Sprite.fromFrame('reddude.007').texture
+        ]
+        @flySprite.visible = false
+        @sprite = new PIXI.DisplayObjectContainer
+        @sprite.addChild(@runSprite)
+        @sprite.addChild(@flySprite)
 
     initialize: ->
         @sprite.scale.x = @spriteScale
@@ -87,7 +95,7 @@ class PlayerController
 
     updateYVelocity: (inputState, timeRatio) ->
         if inputState.jump and not @jumping and @jumpReleased
-            @jumping = true
+            @setJumping()
             @jumpReleased = false
             @velocity.y = @jumpAcceleration
 
@@ -139,14 +147,29 @@ class PlayerController
 
     setRunning: ->
         if not @running
-            @sprite.gotoAndPlay 0
-            @sprite.animationSpeed = 0.5
+            @runSprite.gotoAndPlay 0
+            @runSprite.animationSpeed = 0.5
             @running = true
 
     setStopped: ->
         if @running
-            @sprite.gotoAndStop 2
+            @runSprite.gotoAndStop 2
             @running = false
+        @runSprite.visible = true
+        @flySprite.visible = false
+
+    setJumping: ->
+        @runSprite.visible = false
+        @flySprite.visible = true
+        if not @jumping
+            @flySprite.gotoAndPlay 0
+            @jumping = true
+
+    setGrounded: ->
+        @runSprite.visible = true
+        @flySprite.visible = false
+        if @jumping
+            @jumping = false
 
     capVelocity: ->
         if @velocity.x < -@xAccelerationCap
@@ -182,8 +205,8 @@ class PlayerController
             @level.reset()
 
         if collY
-            @jumping = false
             @doubleJump = false
+            @setGrounded()
             @velocity.y = 0
             @position.y = collY
 

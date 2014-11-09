@@ -1,28 +1,26 @@
 import os
 import json
+import argparse
 
 from PIL import Image
 
 class SpriteMaker(object):
 
-    def __init__(self, name, image_path, num_frames, cols, rows, options=None):
-        self.name = name
-        self.image_path = image_path
-        self.image_name = os.path.basename(image_path)
+    def __init__(self, args):
+        self.name = args.sprite_name
+        self.image_path = args.image_path
+        self.image_name = os.path.basename(self.image_path)
         self.image = Image.open(self.image_path)
         self.image_width, self.image_height = self.image.size
-        self.num_frames = num_frames
-        self.columns = cols
-        self.rows = rows
-        options = options or {}
-        self.frame_width = options.get('frame_width',
-                                       self._default_frame_width())
-        self.frame_height = options.get('frame_height',
-                                        self._default_frame_height())
-        self.sprite_width = options.get('sprite_width', self.frame_width)
-        self.sprite_height = options.get('sprite_height', self.frame_height)
-        self.sprite_offset_x = options.get('sprite_offset_x', 0)
-        self.sprite_offset_y = options.get('sprite_offset_y', 0)
+        self.num_frames = args.frames
+        self.columns = args.columns
+        self.rows = args.rows
+        self.frame_width = args.frame_width or self._default_frame_width()
+        self.frame_height = args.frame_width or self._default_frame_height()
+        self.sprite_width = args.sprite_width or self.frame_width
+        self.sprite_height = args.sprite_height or self.frame_height
+        self.sprite_offset_x = args.sprite_offset_x
+        self.sprite_offset_y = args.sprite_offset_y
 
     def _default_frame_width(self):
         return self.image_width / self.columns
@@ -30,7 +28,7 @@ class SpriteMaker(object):
     def _default_frame_height(self):
         return self.image_height / self.rows
 
-    def gen(self, output_path):
+    def gen(self):
         output = {}
         self.gen_meta(output)
         self.gen_frames(output)
@@ -76,10 +74,28 @@ class SpriteMaker(object):
         output['frames'] = frames
 
 if __name__ == '__main__':
-    options = {'sprite_width': 64,
-               'sprite_height': 64,
-               'sprite_offset_x': 0,
-               'sprite_offset_y': 0}
-    sprite_maker = SpriteMaker('tileset', '../assets/RedDudeTileSet2x.png',
-                               8, 10, 1, options=options)
-    sprite_maker.gen('output.json')
+    parser = argparse.ArgumentParser(description='Create Spritesheet Description')
+    parser.add_argument('--name', dest='sprite_name', required=True,
+                        help='ID/Name of the sprite-sheet')
+    parser.add_argument('-r', '--rows', dest='rows', type=int, required=True,
+                        help='Number of rows')
+    parser.add_argument('-c', '--columns', dest='columns', type=int, required=True,
+                        help='Number of columns')
+    parser.add_argument('-n', '--frames', dest='frames', type=int, required=True,
+                        help='Number of frames')
+    parser.add_argument('--sprite-offset-x', dest='sprite_offset_x', default=0,
+                        type=int, help='x-offset of sprite in frame')
+    parser.add_argument('--sprite-offset-y', dest='sprite_offset_y', default=0,
+                        type=int, help='y-offset of sprite in frame')
+    parser.add_argument('--sprite-width', dest='sprite_width', type=int,
+                        default=None, help='Sprite width')
+    parser.add_argument('--sprite-height', dest='sprite_height', type=int,
+                        default=None, help='Sprite height')
+    parser.add_argument('--frame-width', dest='frame_width', type=int,
+                        default=None, help='Sprite width')
+    parser.add_argument('--frame-height', dest='frame_height', type=int,
+                        default=None, help='Sprite height')
+    parser.add_argument('image_path', help='Path to the image')
+    args = parser.parse_args()
+    sprite_maker = SpriteMaker(args)
+    sprite_maker.gen()
