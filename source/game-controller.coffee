@@ -1,9 +1,9 @@
-window.GameController = class GameController
-    GM_TITLE = 0
-    GM_MENU = 1
-    GM_GAME = 2
-    GM_PAUSE = 3
+GM_TITLE = 0
+GM_MENU = 1
+GM_GAME = 2
+GM_PAUSE = 3
 
+window.GameController = class GameController
     assetPaths: [
         'assets/Title.png'
         'assets/wizard_girl_boots.png'
@@ -17,7 +17,7 @@ window.GameController = class GameController
         'assets/enemy_bullet.png'
     ]
 
-    overlay = null
+    overlay: null
 
     constructor: (@viewport) ->
         @loader = new LevelLoader()
