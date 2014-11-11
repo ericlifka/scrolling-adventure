@@ -1,7 +1,9 @@
-GM_TITLE = 0
-GM_MENU = 1
-GM_GAME = 2
-GM_PAUSE = 3
+# This comment line is very important for reasons beyond logic, compilation will break if its removed.
+State =
+    GM_TITLE : 0
+    GM_MENU : 1
+    GM_GAME : 2
+    GM_PAUSE : 3
 
 window.GameController = class GameController
     assetPaths: [
@@ -27,7 +29,7 @@ window.GameController = class GameController
         @player = new PlayerController()
         @level = new LevelController()
         @title = new TitleController()
-        @gameMode = GM_TITLE
+        @gameMode = State.GM_TITLE
         @injectServices()
 
         @viewport.appendChild @renderer.view
@@ -74,32 +76,32 @@ window.GameController = class GameController
     nextAnimationFrame: ->
         elapsed = @elapsedSinceLastFrame()
         switch @gameMode
-            when GM_GAME
+            when State.GM_GAME
                 inputState = @input.getFrameState()
                 @level.update elapsed, inputState
                 @camera.update()
                 @renderer.render @camera.stage
                 if inputState.pause
-                    @gameMode = GM_PAUSE
+                    @gameMode = State.GM_PAUSE
                     @setPauseScreen @camera.stage
                     @input.clearCache()
 
-            when GM_TITLE
+            when State.GM_TITLE
                 @renderer.render @title.stage
                 inputState = @input.getFrameState()
                 if inputState.jump
-                    @gameMode = GM_GAME
+                    @gameMode = State.GM_GAME
                     @input.clearCache()
 
-            when GM_PAUSE
+            when State.GM_PAUSE
                 inputState = @input.getFrameState()
                 @renderer.render @camera.stage
                 if inputState.pause
                     @removePauseScreen @camera.stage
-                    @gameMode = GM_GAME
+                    @gameMode = State.GM_GAME
                     @input.clearCache()
 
-            when GM_MENU
+            when State.GM_MENU
                 null # nothing
 
     elapsedSinceLastFrame: ->
