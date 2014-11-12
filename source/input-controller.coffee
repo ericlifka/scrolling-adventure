@@ -1,3 +1,34 @@
+###
+    Button codes from default controller mapping:
+    Arrows:
+        up:     12
+        down:   13
+        left:   14
+        right:  15
+
+    Actions:
+        A:  0
+        B:  1
+        X:  2
+        Y:  3
+
+    Meta:
+        Select: 8
+        Start:  9
+
+    Shoulder:
+        left bumper:    4
+        right bumper:   5
+        left trigger:   6
+        left trigger:   7
+
+    Axes: (found under the axes array unlike buttons)
+        left stick x:   0
+        left stick y:   1
+        right stick x:  2
+        right stick y:  3
+###
+
 class InputController
     keyCache: null
 
@@ -16,9 +47,7 @@ class InputController
         @keyCache = { }
 
     getFrameState: ->
-
         @checkForGamePad()
-
 
         left: @keyCache['A']
         right: @keyCache['D']
@@ -30,8 +59,11 @@ class InputController
 
     checkForGamePad: ->
         gamepad = navigator.getGamepads()[0]
-        if gamepad and gamepad.buttons[0].pressed
-            console.log 'pressed!'
+        if gamepad
+            for i in [0...gamepad.buttons.length]
+                button = gamepad.buttons[i]
+                if button.pressed
+                    console.log "pressed #{i}, value '#{button.value}'"
 
 
 #        if not @gamePad
@@ -40,15 +72,12 @@ class InputController
 #                console.log "Found it!"
 #        else
 #            @getGamePadState()
-
-    getGamePadState: ->
-        if @gamePad.buttons[0].pressed
-            console.log "pressed!"
-
-#        for i in [0...@gamePad.buttons.length]
-#            button = @gamePad.buttons[i]
-#            if button.pressed
-#                console.log "pressed #{i}, value '#{button.value}'"
+#
+#    getGamePadState: ->
+#        if @gamePad.buttons[0].pressed
+#            console.log "pressed!"
+#
+#
 #
 #        null
 
