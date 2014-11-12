@@ -89,7 +89,7 @@ window.GameController = class GameController
             when State.GM_TITLE
                 @renderer.render @title.stage
                 inputState = @input.getFrameState()
-                if inputState.jump
+                if inputState.jump or inputState.pause
                     @gameMode = State.GM_GAME
                     @input.clearCache()
 
