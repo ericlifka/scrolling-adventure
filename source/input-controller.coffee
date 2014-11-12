@@ -47,23 +47,25 @@ class InputController
         @keyCache = { }
 
     getFrameState: ->
-        @checkForGamePad()
+        gamepad = navigator.getGamepads()[0]
+        {
+            up: @keyCache['W'] or gamepad?.buttons[12].pressed
+            down: @keyCache['S'] or gamepad?.buttons[13].pressed
+            left: @keyCache['A'] or gamepad?.buttons[14].pressed
+            right: @keyCache['D'] or gamepad?.buttons[15].pressed
 
-        left: @keyCache['A']
-        right: @keyCache['D']
-        up: @keyCache['W']
-        down: @keyCache['S']
-        jump: @keyCache[' ']
-        fire: @keyCache['J']
-        pause: @keyCache['P']
+            jump: @keyCache[' '] or gamepad?.buttons[0].pressed
+            fire: @keyCache['J'] or gamepad?.buttons[1].pressed
+            pause: @keyCache['P'] or gamepad?.buttons[9].pressed
+        }
 
     checkForGamePad: ->
-        gamepad = navigator.getGamepads()[0]
-        if gamepad
-            for i in [0...gamepad.buttons.length]
-                button = gamepad.buttons[i]
-                if button.pressed
-                    console.log "pressed #{i}, value '#{button.value}'"
+#        @
+#        if gamepad
+#            for i in [0...gamepad.buttons.length]
+#                button = gamepad.buttons[i]
+#                if button.pressed
+#                    console.log "pressed #{i}, value '#{button.value}'"
 
 
 #        if not @gamePad
