@@ -30,11 +30,12 @@ TILES = {
 }
 
 TILE_MAP = {
-    0: {'sprite': 'Platform-Metal', 'type': 'block'},
-    1: {'sprite': 'Railings', 'type': 'front'},
-    2: {'sprite': 'Platform-Bridge', 'type': 'platform'},
-    3: {'sprite': 'RailingsRear', 'type': 'back'},
-    4: {'sprite': 'Antenna', 'type': 'back'},
+    0: {'sprite': 'Platform-Metal', 'type': 'block', 'entity': False},
+    1: {'sprite': 'Railings', 'type': 'front', 'entity': False},
+    2: {'sprite': 'Platform-Bridge', 'type': 'platform', 'entity': False},
+    3: {'sprite': 'RailingsRear', 'type': 'back', 'entity': False},
+    4: {'sprite': 'Antenna', 'type': 'back', 'entity': True,
+        'entityType': 'Antenna'},
 }
 
 SPRITE_DEFS = [
@@ -112,6 +113,27 @@ class Tile(BaseTile):
                 generator, coords, dimensions, tiledef['sprite'])
 
 
+class Entity(object):
+
+    def __init__(self, entity_type, entity_id, tile_descriptor):
+        self.entity_type = entity_type
+        self.entity_id = entity_id
+        self.tile_descriptor = tile_descriptor
+
+    def serialize(self):
+        x, y = self.tile_descriptor.coords
+        w, h = self.tile_descriptor.dimensions
+        return {
+            'id': self.entity_id,
+            'type': self.entity_type,
+            'x': x,
+            'y': y,
+            'w': w,
+            'h': h,
+            'data': {}
+        }
+
+
 class LevelImage(object):
 
     def __init__(self, image_path):
@@ -145,25 +167,38 @@ class LevelGenerator(object):
         self.platforms = []
         self.front_tiles = []
         self.back_tiles = []
-        self.entities = []
+
         self.player_start = None
+
         self.level_width = 0
         self.level_height = 0
 
+        self.entity_id = 0
+        self.entities = []
+
+    def get_entity_id(self):
+        self.entity_id += 1
+        return self.entity_id
+
     def collect_tile(self, coords, tile_id):
-        tile = TILE_MAP[tile_id]
-        if tile['type'] == 'block':
-            block = Block(self, coords, self.tile_dimensions, tile)
+        tile_desc = TILE_MAP[tile_id]
+        if tile_desc['type'] == 'block':
+            block = Block(self, coords, self.tile_dimensions, tile_desc)
             self.blocks.append(block)
-        if tile['type'] == 'platform':
-            platform = Platform(self, coords, self.tile_dimensions, tile)
+        if tile_desc['type'] == 'platform':
+            platform = Platform(self, coords, self.tile_dimensions, tile_desc)
             self.platforms.append(platform)
-        elif tile['type'] == 'front':
-            tile = Tile(self, coords, self.tile_dimensions, tile)
+        elif tile_desc['type'] == 'front':
+            tile = Tile(self, coords, self.tile_dimensions, tile_desc)
             self.front_tiles.append(tile)
-        elif tile['type'] == 'back':
-            tile = Tile(self, coords, self.tile_dimensions, tile)
+        elif tile_desc['type'] == 'back':
+            tile = Tile(self, coords, self.tile_dimensions, tile_desc)
             self.back_tiles.append(tile)
+
+        if tile_desc.get('entity'):
+            entity_type = tile_desc['entityType']
+            new_entity = Entity(entity_type, self.get_entity_id(), tile)
+            self.entities.append(new_entity)
 
     def read_level_image(self, level_image):
         if level_image.image_width > self.level_width:
@@ -223,6 +258,11 @@ class LevelGenerator(object):
             'y': y
         }
 
+    def write_entities(self, level):
+        level['entities'] = []
+        for entity in self.entities:
+            level['entities'].append(entity.serialize())
+
     def write_level(self):
         level= {}
         level['name'] = self.name
@@ -232,6 +272,7 @@ class LevelGenerator(object):
         self.write_front_tiles(level)
         self.write_back_tiles(level)
         self.write_player_start(level)
+        self.write_entities(level)
         print(json.dumps(level, indent=4))
 
     def gen(self):

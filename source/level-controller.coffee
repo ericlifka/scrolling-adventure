@@ -1,5 +1,9 @@
 level_descriptions = level_descriptions or { }
 
+State =
+    LM_NORMAL: 1
+    LM_CONSOLE: 2
+
 class LevelController
     camera: null
     player: null
@@ -11,6 +15,7 @@ class LevelController
     frontTiles: null
     backTiles: null
     bullets: null
+    mode: State.LM_NORMAL
 
     constructor: ->
         @blocks = []
@@ -25,6 +30,7 @@ class LevelController
 
     load: (levelIdentifier) ->
         @description = @loader.getLevelDescription levelIdentifier
+        @loadEntities()
         @loadTiles()
         @loadBackground()
         # Loads assets for the level
@@ -44,11 +50,14 @@ class LevelController
 
     update: (elapsedTime, inputState) ->
         timeRatio = elapsedTime / 1000
-
-        @player.update timeRatio, inputState
-        for entity in @entities
-            entity.update timeRatio
-        @updateBullets timeRatio
+        switch @mode
+            when State.LM_NORMAL
+                @player.update timeRatio, inputState
+                for entity in @entities
+                    entity.update timeRatio
+                @updateBullets timeRatio
+            when State.LM_CONSOLE
+                null
 
     testPlatformCollision: (x, y, xStep, yStep, hitBox) ->
         collY = null
@@ -178,6 +187,10 @@ class LevelController
             @frontTiles.push(@loadTile tile)
         for tile in @description.backTiles
             @backTiles.push(@loadTile tile)
+
+    loadEntities: ->
+        for entity in @description.entities
+            @entities.push(@loadEntity entity)
 
     spawnFriendlyBullet: (position, velocity) ->
         bullet = {

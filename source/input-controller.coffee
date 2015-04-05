@@ -57,4 +57,5 @@ class InputController
             jump: @keyCache[' '] or gamePad?['buttons'][0]['pressed']
             fire: @keyCache['J'] or gamePad?['buttons'][1]['pressed']
             pause: @keyCache['P'] or gamePad?['buttons'][9]['pressed']
+            read: @keyCache['R']
         }

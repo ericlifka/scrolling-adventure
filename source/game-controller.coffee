@@ -1,4 +1,5 @@
-# This comment line is very important for reasons beyond logic, compilation will break if its removed.
+# This comment line is very important for reasons beyond logic, compilation
+# will break if its removed.
 State =
     GM_TITLE : 0
     GM_MENU : 1
